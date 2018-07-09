@@ -12,5 +12,6 @@
 
 typedef unsigned int	uint_t;
 typedef enum game_status_e	game_status_t;
+typedef enum ship_length_e	ship_length_t;
 
 #endif

@@ -15,4 +15,11 @@ enum	game_status_e {
 	P2_WON
 };
 
+enum	ship_length_e {
+	L2 = 2,
+	L3,
+	L4,
+	L5
+};
+
 #endif
