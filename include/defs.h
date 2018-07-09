@@ -7,3 +7,4 @@
 
 #define	BOARD_H	(8)
 #define	BOARD_W	(8)
+#define LOOSE_COND	(14)

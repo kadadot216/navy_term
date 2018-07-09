@@ -9,7 +9,7 @@
 #include "types.h"
 #include "defs.h"
 
-board_cell_t	**get_coords_table(void)
+board_cell_t	**init_board(void)
 {
 	uint_t	y = 0;
 	uint_t	x = 0;
@@ -25,6 +25,7 @@ board_cell_t	**get_coords_table(void)
 			getter[y][x].y = y;
 			getter[y][x].coords[0] = (alpha + y);
 			getter[y][x].coords[1] = (num + x);
+			getter[y][x].rep = NONE;
 			x++;
 		}
 		x = 0;
@@ -33,7 +34,7 @@ board_cell_t	**get_coords_table(void)
 	return (getter);
 }
 
-board_cell_t	**unset_coords_table(board_cell_t **table)
+board_cell_t	**unset_board(board_cell_t **table)
 {
 	uint_t	y = 0;
 	uint_t	x = 0;
@@ -44,6 +45,7 @@ board_cell_t	**unset_coords_table(board_cell_t **table)
 			table[y][x].y = 0;
 			table[y][x].coords[0] = 0;
 			table[y][x].coords[1] = 0;
+			table[y][x].rep = NONE;
 			x++;
 		}
 		free(table[y]);

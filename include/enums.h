@@ -11,15 +11,23 @@
 enum	game_status_e {
 	ERROR,
 	RUNNING,
-	P1_WON,
-	P2_WON
+	ME_WON,
+	ENEMY_WON
 };
 
 enum	ship_length_e {
+	NONE = '.',
+	HIT = 'x',
+	MISSED = 'o',
 	L2 = 2,
 	L3,
 	L4,
 	L5
+};
+
+enum	board_type_e {
+	MINE,
+	ENEMY
 };
 
 #endif
