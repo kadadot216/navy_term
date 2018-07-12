@@ -20,8 +20,9 @@ LIB_HDSRC	=	my.h
 
 LIB_HDS		=	$(addprefix $(LIB_HDPATH)/, $(LIB_HDSRC))
 
-LIB_SRCS	=	my_putstr.c		\
-			my_puterror.c
+LIB_SRCS	=	my_putstr_fd.c		\
+			my_puterror.c		\
+			my_memset.c
 
 LIB_SRC		=	$(addprefix $(LIB_PATH)/, $(LIB_SRCS))
 LIB_OBJ		=	$(LIB_SRC:.c=.o)
@@ -33,7 +34,11 @@ CFLAGS		+=	-I$(HDPATH)
 NAME		=	navy
 LDFLAGS		=	-L./lib
 LIBFLAG		=	-lmy
-SRC		=	src/messages.c
+SRC		=	src/messages.c			\
+			src/board/init.c		\
+			src/game/init.c			\
+			src/armada/init.c		\
+			src/filesys/interaction.c
 
 MAIN		=	src/main.c
 

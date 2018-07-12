@@ -14,13 +14,22 @@ struct	board_cell_s {
 	char	coords[2];
 	uint_t	y;
 	uint_t	x;
-	ship_length_t	rep;
+	dp_t	rep;
+};
+
+struct	armada_s {
+	uint_t	status;
+	uint_t	total_hits;
+	struct board_cell_s	ship2[2];
+	struct board_cell_s	ship3[3];
+	struct board_cell_s	ship4[4];
+	struct board_cell_s	ship5[5];
 };
 
 struct	navy_game_s {
 	game_status_t	status;
-	uint_t	hits[2];
 	struct	board_cell_s	**boards[2];
+	struct	armada_s	*armada;
 };
 
 #endif

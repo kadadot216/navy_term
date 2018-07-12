@@ -15,14 +15,14 @@ enum	game_status_e {
 	ENEMY_WON
 };
 
-enum	ship_length_e {
+enum	dp_e {
 	NONE = '.',
 	HIT = 'x',
 	MISSED = 'o',
-	L2 = 2,
-	L3,
-	L4,
-	L5
+	L2 = '2',
+	L3 = '3',
+	L4 = '4',
+	L5 = '5'
 };
 
 enum	board_type_e {
