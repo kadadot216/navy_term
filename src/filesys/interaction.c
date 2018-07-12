@@ -75,27 +75,20 @@ int	check_ship_tokens(char const *buffer)
 	return (1);
 }
 
-int	check_format(char const *buffer, int rstat)
+char	*read_entries(char *buffer, char const *filepath)
 {
-	if (rstat != 32) {
-		return (0);
-	}
-	return (check_delims_placement(buffer) && check_ship_tokens(buffer));
-}
-
-int	read_entries(armada_t *armada, char const *filepath)
-{
-	char	buffer[100] = { 0 };
 	int	fd = 0;
-	int	cstat = 0;
 
 	fd = open_file(filepath);
-	if (fd == -1) {
+	if (fd == -1 || read(fd, buffer, 100) != 32) {
 		close(fd);
+		my_memset(buffer, '\0', 100);
 		return (0);
 	}
-	cstat = read(fd, buffer, 100);
 	close(fd);
-	cstat = check_format(buffer, cstat);
-	return (cstat);
+	if (!(check_delims_placement(buffer) && check_ship_tokens(buffer))) {
+		my_memset(buffer, '\0', 100);
+		return (0);
+	}
+	return (buffer);
 }

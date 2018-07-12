@@ -10,7 +10,7 @@
 
 #include "types.h"
 
-board_cell_t	**init_board(void);
+board_cell_t	**init_board(armada_t *armada);
 board_cell_t	**unset_board(board_cell_t **table);
 
 #endif

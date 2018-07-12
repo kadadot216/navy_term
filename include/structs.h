@@ -19,17 +19,17 @@ struct	board_cell_s {
 
 struct	armada_s {
 	uint_t	status;
-	uint_t	total_hits;
-	struct board_cell_s	ship2[2];
-	struct board_cell_s	ship3[3];
-	struct board_cell_s	ship4[4];
-	struct board_cell_s	ship5[5];
+	struct board_cell_s	(*ship2[2]);
+	struct board_cell_s	(*ship3[3]);
+	struct board_cell_s	(*ship4[4]);
+	struct board_cell_s	(*ship5[5]);
 };
 
 struct	navy_game_s {
 	game_status_t	status;
 	struct	board_cell_s	**boards[2];
 	struct	armada_s	*armada;
+	uint_t	total_hits[2];
 };
 
 #endif

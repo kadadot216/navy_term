@@ -16,9 +16,9 @@ navy_game_t	*init_game(navy_game_t *game, char const *filepath)
 	if (game == NULL) {
 		return (NULL);
 	}
-	game->boards[MINE] = init_board();
-	game->boards[ENEMY] = init_board();
-	game->armada = init_armada();
+	game->armada = init_armada(filepath);
+	game->boards[MINE] = init_board(game->armada);
+	game->boards[ENEMY] = init_board(NULL);
 // map armada
 // remap armada into board
 	if (game->armada->status == 0) {

@@ -10,7 +10,7 @@
 
 #include "types.h"
 
-armada_t	*init_armada(void);
+armada_t	*init_armada(char const *filepath);
 armada_t	*unset_armada(armada_t *armada);
 
 #endif

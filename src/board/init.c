@@ -9,7 +9,7 @@
 #include "types.h"
 #include "defs.h"
 
-board_cell_t	**init_board(void)
+board_cell_t	**init_board(armada_t *armada)
 {
 	uint_t	y = 0;
 	uint_t	x = 0;
