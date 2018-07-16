@@ -10,7 +10,9 @@
 
 #include "types.h"
 
-int	parse_file(char const *filepath);
+int	parser_parse_file(board_t **board, char const *filepath);
+board_t	**init_board(void);
+void	display_board(board_t **board);
 
 #endif
 
