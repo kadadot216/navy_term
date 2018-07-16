@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** messages.c
-** File description:
-** Messages related functions for navy
-*/
-
 #include "my.h"
 
 void	print_help_msg(char const *pname)

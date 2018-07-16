@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** structs.h
-** File description:
-** Header file for structs
-*/
-
 #ifndef __STRUCTS_H__
 #define __STRUCTS_H__
 
@@ -17,8 +10,15 @@ struct	pos_s {
 
 struct	board_cell_s {
 	char	coords[2];
-	dp_t	rep;
 	struct	pos_s	pos;
+};
+
+struct	parser_s {
+	int	offset_x;
+	int	offset_y;
+	char	lab;
+	char	p1[2];
+	char	p2[2];
 };
 
 struct	armada_s {

@@ -1,10 +1,3 @@
-##
-## EPITECH PROJECT, 2018
-## Makefile
-## File description:
-## Makefile for my_runner
-##
-
 CC		=	gcc -W -Wall -Wextra
 DBCC		=	gcc -g
 RM		=	rm -f
@@ -40,6 +33,7 @@ LIBFLAG		=	-lmy
 SRC		=	src/messages.c			\
 			src/board/init.c		\
 			src/game/init.c			\
+			src/display/display_board.c	\
 			src/parser/filesys.c
 
 MAIN		=	src/main.c

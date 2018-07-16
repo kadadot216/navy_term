@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** init.c
-** File description:
-** Game initiation related functions
-*/
-
 #include <stdlib.h>
 #include "board.h"
 #include "game.h"
