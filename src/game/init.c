@@ -11,19 +11,4 @@
 
 navy_game_t	*init_game(navy_game_t *game, char const *filepath)
 {
-	game = malloc(sizeof(navy_game_t));
-
-	if (game == NULL) {
-		return (NULL);
-	}
-	game->armada = init_armada(filepath);
-	game->boards[MINE] = init_board(game->armada);
-	game->boards[ENEMY] = init_board(NULL);
-// map armada
-// remap armada into board
-	if (game->armada->status == 0) {
-		game->status = ERROR;
-		return (game);
-	}
-	return (game);
 }

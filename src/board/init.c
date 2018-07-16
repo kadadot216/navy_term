@@ -7,53 +7,18 @@
 
 #include <stdlib.h>
 #include "types.h"
+#include "my.h"
 #include "defs.h"
 
-board_cell_t	**init_board(armada_t *armada)
+board_t	**init_board(void)
 {
 	uint_t	y = 0;
-	uint_t	x = 0;
-	char	alpha = 'A';
-	char	num = '1';
-	board_cell_t	**getter = NULL;
+	board_t	**board = malloc(sizeof(board_t *) * 8);
 
-	getter = malloc(sizeof(board_cell_t *) * BOARD_H);
-	while (y < BOARD_H) {
-		getter[y] = malloc(sizeof(board_cell_t) * BOARD_W);
-		while (x < BOARD_W) {
-			getter[y][x].x = x;
-			getter[y][x].y = y;
-			getter[y][x].coords[0] = (alpha + y);
-			getter[y][x].coords[1] = (num + x);
-			getter[y][x].rep = NONE;
-			x++;
-		}
-		x = 0;
+	while (y < 8) {
+		board[y] = malloc(sizeof(board_t) * 8);
+		my_memset((char *) board[y], NONE, 8);
 		y++;
 	}
-	return (getter);
-}
-
-board_cell_t	**unset_board(board_cell_t **table)
-{
-	uint_t	y = 0;
-	uint_t	x = 0;
-
-	while (y < BOARD_H) {
-		while (x < BOARD_W) {
-			table[y][x].x = 0;
-			table[y][x].y = 0;
-			table[y][x].coords[0] = 0;
-			table[y][x].coords[1] = 0;
-			table[y][x].rep = NONE;
-			x++;
-		}
-		free(table[y]);
-		table[y] = NULL;
-		x = 0;
-		y++;
-	}
-	free(table);
-	table = NULL;
-	return (table);
+	return (board);
 }

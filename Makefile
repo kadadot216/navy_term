@@ -23,6 +23,8 @@ LIB_HDS		=	$(addprefix $(LIB_HDPATH)/, $(LIB_HDSRC))
 LIB_SRCS	=	my_putstr_fd.c		\
 			my_puterror.c		\
 			my_strncpy.c		\
+			my_putchar.c		\
+			my_putcharx_fd.c	\
 			my_memset.c
 
 LIB_SRC		=	$(addprefix $(LIB_PATH)/, $(LIB_SRCS))
@@ -38,8 +40,7 @@ LIBFLAG		=	-lmy
 SRC		=	src/messages.c			\
 			src/board/init.c		\
 			src/game/init.c			\
-			src/armada/init.c		\
-			src/filesys/interaction.c
+			src/parser/filesys.c
 
 MAIN		=	src/main.c
 

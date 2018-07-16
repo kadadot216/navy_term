@@ -10,11 +10,15 @@
 
 #include "stypes.h"
 
-struct	board_cell_s {
-	char	coords[2];
+struct	pos_s {
 	uint_t	y;
 	uint_t	x;
+};
+
+struct	board_cell_s {
+	char	coords[2];
 	dp_t	rep;
+	struct	pos_s	pos;
 };
 
 struct	armada_s {

@@ -5,6 +5,7 @@
 ** Definitions for the program
 */
 
-#define	BOARD_H	(8)
-#define	BOARD_W	(8)
 #define LOOSE_COND	(14)
+#define	BUFFLEN		(32)
+#define	NB_BOATS	(4)
+#define	LINELEN		(BUFFLEN/NB_BOATS)

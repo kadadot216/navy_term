@@ -10,7 +10,7 @@
 
 #include "types.h"
 
-navy_game_t	*init_game(char const *filepath);
+int	parse_file(char const *filepath);
 
 #endif
 

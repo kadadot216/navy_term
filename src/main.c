@@ -15,8 +15,7 @@ int	main(int ac, char **av)
 {
 	navy_game_t	*game = NULL;
 
-	game = init_game(av[1]);
-	if (game->status == ERROR) {
+	if (!parse_file(av[1])) {
 		my_putstr_fd(2, "Something's wrong.\n");
 		return (84);
 	}
