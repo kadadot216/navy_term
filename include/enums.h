@@ -11,8 +11,8 @@
 enum	game_status_e {
 	ERROR,
 	RUNNING,
-	ME_WON,
-	ENEMY_WON
+	ENEMY_WON,
+	ME_WON
 };
 
 enum	board_e {
