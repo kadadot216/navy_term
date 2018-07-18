@@ -12,6 +12,10 @@
 #include "types.h"
 #include "defs.h"
 
+#define	ABS(x) ((x < 0) ? (-x) : (x))
+#define	HIGHEST(x, y)	((x > y) ? x : y)
+#define	LOWEST(x, y)	((x > y) ? y : x)
+
 int	open_file(char const *filepath)
 {
 	int	fd = 0;
@@ -38,50 +42,40 @@ int	parser_read_entries(char *buffer, char const *filepath)
 	return (1);
 }
 
-int	parser_is_valid(parser_t *p)
+int	in_bounds(parser_t *c)
 {
-	if (!(p->p1[0] >= 0 && p->p1[0] <= 7 && p->p2[1] >= 0 && p->p2[1] <= 7)) {
-		my_putstr_fd(2, "descriptor: Wrong boat size\n");
+	return ((c->x >= 0 && c->x <= 7) && (c->y >= 0 && c->y <= 7));
+}
+
+int	parser_is_valid(parser_t *c, uint_t offset)
+{
+	if (!(in_bounds(&c[0]) && in_bounds(&c[1]))) {
+		my_putstr_fd(2, "descriptor: Out of bounds\n");
 		return (0);
 	}
-	if (p->p1[1] + p->offset_x == p->p2[1] || p->p1[1] - p->offset_x == p->p2[1]) {
-		p->offset_y = p->offset_x;
-		p->offset_x = 0;
+	if (ABS((c[1].x - c[0].x)) == offset && (c[1].y - c[0].y) == 0) {
 		return (1);
 	}
-	if (p->p1[0] + p->offset_x == p->p2[0] || p->p1[0] - p->offset_x == p->p2[0])
+	if (ABS((c[1].y - c[0].y)) == offset && (c[1].x - c[0].x) == 0) {
 		return (1);
+	}
 	return (0);
 
 }
 
-int	abs(int n)
+parser_t	map_parser(parser_t *c, char *line)
 {
-	return ((n < 0) ? (- n) : n);
+	c->x = (int) line[0];
+	c->y = (int) line[1];
+	c->x -= 'A';
+	c->y -= '1';
+	return (*c);
 }
 
-int	offset_is_valid(parser_t *p)
+uint_t	parser_is_line_valid(char *line, parser_t *c)
 {
-	if ((p->lab - '1') == abs(p->p2[1] - p->p1[1]))
-		return (1);
-	if ((p->lab - '1') == abs(p->p2[0] - p->p1[0]))
-		return (1);
-	return (0);
-}
+	uint_t	offset = 0;
 
-parser_t	*map_pts(parser_t *p, char *line)
-{
-	my_strncpy(p->p1, &line[2], 2);
-	my_strncpy(p->p2, &line[5], 2);
-	p->p1[0] -= 'A';
-	p->p1[1] -= '1';
-	p->p2[0] -= 'A';
-	p->p2[1] -= '1';
-	return (p);
-}
-
-int	parser_is_line_valid(char *line, int size, parser_t *p)
-{
 	if (line[1] != ':' || line[4] != ':') {
 		return (0);
 	}
@@ -91,33 +85,30 @@ int	parser_is_line_valid(char *line, int size, parser_t *p)
 	if (!(line[0] >= L2 && line[0] <= L5)) {
 		return (0);
 	}
-	p->lab = line[0];
-	p = map_pts(p, line);
-	if (!offset_is_valid(p))
+	c[0] = map_parser(&c[0], &line[2]);
+	c[1] = map_parser(&c[1], &line[5]);
+	offset = (line[0] - '1');
+	if (!(parser_is_valid(c, offset)))
 		return (0);
-	p->offset_x = abs(p->p2[0] - p->p1[0]);
-	p->offset_y = abs(p->p2[1] - p->p1[1]);
-	if (!parser_is_valid(p)) {
-		return (0);
-	}
-	return (1);
+	return (offset);
 }
 
-board_t	**parser_line_to_board(board_t **board, parser_t *parser)
+board_t	**parser_line_to_board(board_t **board, parser_t *c, uint_t offset)
 { 
-	int	x = parser->p1[0];
-	int	y = parser->p1[1];
-	int	off = 0;
+	int	x1 = LOWEST(c[0].x, c[1].x);
+	int	x2 = HIGHEST(c[0].x, c[1].x);
+	int	y1 = LOWEST(c[0].y, c[1].y);
+	int	y2 = HIGHEST(c[0].y, c[1].y);
+	int	x = x1;
+	int	y = y1;
 
-	off = parser->offset_x;
-	while (off >= 0) {
-		board[y][x + off] = parser->lab;
-		off--;
+	while (x <= x2) {
+		board[y1][x] = (offset + '1');
+		x++;
 	}
-	off = parser->offset_y;
-	while (off >= 0) {
-		board[y + off][x] = parser->lab;
-		off--;
+	while (y <= y2) {
+		board[y][x1] = (offset + '1');
+		y++;
 	}
 	return (board);
 }
@@ -126,17 +117,18 @@ int	parser_parse_file(board_t **board, char const *filepath)
 {
 	char	buffer[BUFFLEN] = { '\0' };
 	uid_t	line = 0;
-	parser_t	line_p;
+	parser_t	coords[2];
+	uint_t	offset = 0;
 
 	if (!parser_read_entries(buffer, filepath)) {
 		my_putstr_fd(2, "File format is not respected!\n");
 		return (0);
 	}
 	while (line < NB_BOATS) {
-		if (!parser_is_line_valid(BOARD_LINE, LINELEN, &line_p)) {
+		if (!(offset = parser_is_line_valid(BOARD_LINE, coords))) {
 			return (0);
 		}
-		board = parser_line_to_board(board, &line_p);
+		board = parser_line_to_board(board, coords, offset);
 		line++;
 	}
 	return (1);

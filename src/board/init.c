@@ -33,3 +33,18 @@ board_t	**init_board(void)
 	}
 	return (board);
 }
+
+board_t	**destroy_board(board_t **board)
+{
+	uint_t	y = 0;
+
+	while (y < 8) {
+		board[y] = set_board_line(board[y], NONE, 8);
+		free(board[y]);
+		board[y] = NULL;
+		y++;
+	}
+	free(board);
+	board[y] = NULL;
+	return (board);
+}

@@ -10,8 +10,8 @@
 
 #include "types.h"
 
-int	parser_parse_file(board_t **board, char const *filepath);
-board_t	**init_board(void);
+navy_game_t	*init_game(navy_game_t *game, char const *filepath);
+navy_game_t	*destroy_game(navy_game_t *game);
 void	display_board(board_t **board);
 
 #endif
