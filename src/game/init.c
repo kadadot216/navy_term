@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** init.c
-** File description:
-** Game initiation related functions
-*/
-
 #include <stdlib.h>
 #include "board.h"
 #include "game.h"
@@ -36,8 +29,10 @@ navy_game_t	*init_game(navy_game_t *game, char const *filepath)
 		game = abort_game_init(game);
 		return (NULL);
 	}
-	game->total_hits[MINE] = 14;
-	game->total_hits[ENEMY] = 14;
+	parser_parse_file(game->boards[ENEMY], filepath);
+	game->total_hits[MINE] = 13;
+	game->total_hits[ENEMY] = 13;
+	game->status = RUNNING;
 	return (game);
 }
 

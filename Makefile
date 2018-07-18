@@ -1,10 +1,3 @@
-##
-## EPITECH PROJECT, 2018
-## Makefile
-## File description:
-## Makefile for my_runner
-##
-
 CC		=	gcc -W -Wall -Wextra
 DBCC		=	gcc -g
 RM		=	rm -f
@@ -24,6 +17,7 @@ LIB_SRCS	=	my_putstr_fd.c		\
 			my_puterror.c		\
 			my_strncpy.c		\
 			my_putchar.c		\
+			my_strlen.c		\
 			my_putcharx_fd.c	\
 			my_memset.c
 
@@ -40,6 +34,7 @@ LIBFLAG		=	-lmy
 SRC		=	src/messages.c			\
 			src/board/init.c		\
 			src/game/init.c			\
+			src/game/running.c		\
 			src/display/display_board.c	\
 			src/parser/filesys.c
 

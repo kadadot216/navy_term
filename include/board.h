@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** board.h
-** File description:
-** Header file for board structure related functions
-*/
-
 #ifndef __BOARD_H__
 #define __BOARD_H__
 

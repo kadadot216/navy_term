@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** filesys.c
-** File description:
-** Function interactions
-*/
-
 #include <sys/types.h>
 #include <fcntl.h>
 #include <unistd.h>

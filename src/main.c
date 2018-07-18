@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** main.c
-** File description:
-** Main file
-*/
-
 #include <stdlib.h>
 #include "types.h"
 #include "my.h"
@@ -20,7 +13,7 @@ int	main(int ac, char **av)
 		my_putstr_fd(2, "Something's wrong.\n");
 		return (84);
 	}
-	display_board(game->boards[MINE]);
+	play_game(game);
 	destroy_game(game);
 	my_putstr_fd(1, "All good\n");
 	return (0);

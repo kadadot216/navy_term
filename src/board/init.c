@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** coords_table.c
-** File description:
-** For filling the coordinate table
-*/
-
 #include <stdlib.h>
 #include "types.h"
 #include "my.h"
