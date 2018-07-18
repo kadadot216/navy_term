@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** coords_table.c
-** File description:
-** For filling the coordinate table
-*/
-
 #include <stdlib.h>
 #include "types.h"
 #include "my.h"
@@ -31,5 +24,20 @@ board_t	**init_board(void)
 		board[y] = set_board_line(board[y], NONE, 8);
 		y++;
 	}
+	return (board);
+}
+
+board_t	**destroy_board(board_t **board)
+{
+	uint_t	y = 0;
+
+	while (y < 8) {
+		board[y] = set_board_line(board[y], NONE, 8);
+		free(board[y]);
+		board[y] = NULL;
+		y++;
+	}
+	free(board);
+	board[y] = NULL;
 	return (board);
 }

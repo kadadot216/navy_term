@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** types.h
-** File description:
-** Header file for types
-*/
-
 #ifndef __TYPES_H__
 #define __TYPES_H__
 

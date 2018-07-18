@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** game.h
-** File description:
-** Header file for game.c
-*/
-
 #ifndef __GAME_H__
 #define __GAME_H__
 
