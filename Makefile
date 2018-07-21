@@ -25,6 +25,7 @@ LIB_SRCS	=	my_putstr_fd.c		\
 			my_strncpy.c		\
 			my_putchar.c		\
 			my_strlen.c		\
+			my_put_nbr.c		\
 			my_putcharx_fd.c	\
 			my_memset.c
 

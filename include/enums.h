@@ -11,8 +11,8 @@
 enum	game_status_e {
 	ERROR,
 	RUNNING,
-	ENEMY_WON,
-	ME_WON
+	P1_WON,
+	P2_WON
 };
 
 enum	board_e {
@@ -36,9 +36,9 @@ enum	x_axis_e {
 	H = 7
 };
 
-enum	board_type_e {
-	MINE,
-	ENEMY
+enum	player_e {
+	P1,
+	P2
 };
 
 #endif
