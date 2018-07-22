@@ -27,6 +27,7 @@ LIB_SRCS	=	my_putstr_fd.c		\
 			my_strlen.c		\
 			my_put_nbr.c		\
 			my_putcharx_fd.c	\
+			my_strcmp.c		\
 			my_memset.c
 
 LIB_SRC		=	$(addprefix $(LIB_PATH)/, $(LIB_SRCS))
@@ -40,11 +41,20 @@ NAME		=	navy
 LDFLAGS		=	-L./lib
 LIBFLAG		=	-lmy
 SRC		=	src/messages.c			\
-			src/board/init.c		\
+			src/argparse.c			\
+			src/game/action_queries.c	\
+			src/game/connect.c		\
+			src/game/display.c		\
 			src/game/init.c			\
+			src/game/interface.c		\
+			src/game/prompt.c		\
+			src/game/query.c		\
 			src/game/running.c		\
+			src/board/init.c		\
 			src/display/display_board.c	\
-			src/parser/filesys.c
+			src/parser/filesys.c		\
+			src/parser/checks.c		\
+			src/parser/helpers.c
 
 MAIN		=	src/main.c
 

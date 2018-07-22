@@ -13,3 +13,4 @@
 #define	DELIM_A		(1)
 #define	DELIM_B		(4)
 #define	BSIZE		(8)
+#define	SLEEP		(50000000)

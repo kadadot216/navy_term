@@ -45,6 +45,18 @@ navy_game_t	*init_game(navy_game_t *game, char const *filepath,
 	return (game);
 }
 
+navy_game_t	*init_game_as(navy_game_t *game, int ac, char **av)
+{
+	if (ac == 1 || ac > 3) {
+		return (NULL);
+	} else if (ac == 2) {
+		return (init_game(game, av[1], P1));
+	} else if (ac == 3 && get_p1pid(av[1])) {
+		return (init_game(game, av[2], P2));
+	}
+	return (NULL);
+}
+
 navy_game_t	*destroy_game(navy_game_t *game)
 {
 	game->boards[0] = destroy_board(game->boards[0]);

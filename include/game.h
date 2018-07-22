@@ -10,6 +10,7 @@
 
 #include "types.h"
 
-void	display_board(board_t **board);
+int	prompt_instruction(parser_t *parser);
+int	get_p1pid(char const *arg);
 
 #endif

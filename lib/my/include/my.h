@@ -16,6 +16,7 @@ void	my_putcharx_fd(int fd, char c, int times);
 void	my_put_nbr(int nb);
 int	my_getnbr(char const *str);
 int	my_strlen(char const *str);
+int	my_strcmp(char const *s1, char const *s2);
 char	*my_strncpy(char *dest, char const *src, int n);
 
 #endif
