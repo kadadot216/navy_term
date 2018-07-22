@@ -38,12 +38,13 @@ int	parser_read_entries(char *buffer, char const *filepath)
 	close(fd);
 	return (1);
 }
+
 int	parser_parse_file(board_t **board, char const *filepath)
 {
 	char	buffer[BUFFLEN] = { '\0' };
 	uid_t	line = 0;
 	parser_t	coords[2];
-	uint_t	offset = 0;
+	int	offset = 0;
 
 	if (!parser_read_entries(buffer, filepath)) {
 		my_putstr_fd(2, "File format is not respected!\n");

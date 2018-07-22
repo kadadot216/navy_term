@@ -14,7 +14,7 @@ int	in_bounds(parser_t *c)
 	return ((c->x >= 0 && c->x <= 7) && (c->y >= 0 && c->y <= 7));
 }
 
-int	parser_is_valid(parser_t *c, uint_t offset)
+int	parser_is_valid(parser_t *c, int offset)
 {
 	if (!(in_bounds(&c[0]) && in_bounds(&c[1]))) {
 		my_putstr_fd(2, "descriptor: Out of bounds\n");

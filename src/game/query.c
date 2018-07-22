@@ -19,7 +19,7 @@ int	receive_query(void)
 {
 	int	received = 0;
 	int	tstat = 0;
-	
+
 	while (iface.bitval < 16) {
 		tstat = usleep(SLEEP);
 		if (tstat != -1) {
@@ -54,11 +54,10 @@ int	receive_connection_query(void)
 	return (0);
 }
 
-void	send_query(int value, pid_t epid)
+static void	build_sigword(int sigword[], int value)
 {
 	int	bitval = 8;
 	int	idx = 3;
-	int	sigword[4] = {0};
 
 	while (value > 0 && value < 16 && idx >= 0) {
 		if (value >= bitval) {
@@ -72,7 +71,14 @@ void	send_query(int value, pid_t epid)
 		}
 		idx--;
 	}
-	idx = 0;
+}
+
+void	send_query(int value, pid_t epid)
+{
+	int	sigword[4] = {0};
+	int	idx = 0;
+
+	build_sigword(sigword, value);
 	while (idx < 4) {
 		usleep(30);
 		kill(epid, sigword[idx]);
