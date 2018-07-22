@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** action_queries.h
-** File description:
-** Header file for action_queries.c
-*/
-
 #ifndef __ACTION_QUERIES_H__
 #define __ACTION_QUERIES_H__
 

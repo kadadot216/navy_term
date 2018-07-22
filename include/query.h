@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** query.h
-** File description:
-** Header file for query.c
-*/
-
 #ifndef __QUERY_H__
 #define __QUERY_H__
 

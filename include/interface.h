@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** interface.h
-** File description:
-** Header file for interface structure's functions
-*/
-
 #ifndef __INTERFACE_H__
 #define __INTERFACE_H__
 

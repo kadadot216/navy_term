@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** display.c
-** File description:
-** Display related functions
-*/
-
 #include "my.h"
 #include "types.h"
 #include "board.h"

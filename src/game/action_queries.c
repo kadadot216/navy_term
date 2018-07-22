@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** action_queries.c
-** File description:
-** Related functions for game's actions query wrappers
-*/
-
 #include <unistd.h>
 #include "my.h"
 #include "types.h"
@@ -24,7 +17,7 @@ void	send_attack_query(parser_t *prompt, pid_t epid)
 
 void	dispatch_response_query(navy_game_t *game, parser_t *prompt)
 {
-	int	hit = receive_query(); 	
+	int	hit = receive_query();
 
 	display_attack_msg(prompt);
 	if (hit == 2) {
@@ -42,17 +35,18 @@ parser_t	receive_attack_query(void)
 	parser_t	query = {0, 0};
 
 	my_putstr_fd(1, "\nwaiting for enemy's attack...\n");
-	query.x = (receive_query() - 1); 
-	query.y = (receive_query() - 1); 
+	query.x = (receive_query() - 1);
+	query.y = (receive_query() - 1);
 	return (query);
 }
 
-navy_game_t	*send_attack_response(parser_t *p, navy_game_t *game, pid_t epid)
+navy_game_t	*send_attack_response(parser_t *p, navy_game_t *game,
+		pid_t epid)
 {
 	board_t	*position = &game->boards[0][p->y][p->x];
 
 	display_attack_msg(p);
-	if (*position >= L2 && *position <= L5)	 {
+	if (*position >= L2 && *position <= L5) {
 		game->boards[0][p->y][p->x] = HIT;
 		game->total_hits[0]--;
 		send_query(2, epid);

@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** main.c
-** File description:
-** Main file
-*/
-
 #include <stdlib.h>
 #include <signal.h>
 #include "types.h"

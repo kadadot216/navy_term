@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** helpers.c
-** File description:
-** Parser helper functions
-*/
-
 #include "macros.h"
 #include "parser_check.h"
 #include "types.h"
@@ -40,7 +33,7 @@ uint_t	parser_is_line_valid(char *line, parser_t *c)
 }
 
 board_t	**parser_line_to_board(board_t **board, parser_t *c, uint_t offset)
-{ 
+{
 	int	x1 = LOWEST(c[0].x, c[1].x);
 	int	x2 = HIGHEST(c[0].x, c[1].x);
 	int	y1 = LOWEST(c[0].y, c[1].y);

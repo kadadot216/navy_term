@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** interface.c
-** File description:
-** Interface global variable and related functions
-*/
-
 #include <stdlib.h>
 #include <sys/types.h>
 #include <signal.h>
@@ -30,6 +23,7 @@ com_interface_t	init_interface(void)
 void	receive_bit_unsafe(int sig, siginfo_t *info, void *context)
 {
 	(void)context;
+	(void)info;
 	if (sig == SIGUSR2) {
 		iface.query += iface.bitval;
 		iface.bitval *= 2;
@@ -41,6 +35,7 @@ void	receive_bit_unsafe(int sig, siginfo_t *info, void *context)
 void	get_p2pid(int sig, siginfo_t *info, void *context)
 {
 	(void)context;
+	(void)sig;
 	iface.epid = info->si_pid;
 }
 

@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** connect.c
-** File description:
-** Connection related functions
-*/
-
 #include <unistd.h>
 #include "my.h"
 #include "types.h"

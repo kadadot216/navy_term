@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** enums.h
-** File description:
-** Header file for enums
-*/
-
 #ifndef __ENUMS_H__
 #define __ENUMS_H__
 

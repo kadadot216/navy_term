@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** argparse.c
-** File description:
-** arg parsing related functions
-*/
-
 #include "my.h"
 #include "types.h"
 

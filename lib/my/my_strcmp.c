@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** my_strcmp.c
-** File description:
-** Compares two strings of characters
-*/
-
 int	my_strcmp(char const *s1, char const *s2)
 {
 	while (*s1 != '\0') {

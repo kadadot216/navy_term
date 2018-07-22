@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** running.c
-** File description:
-** Game running related functions
-*/
-
 #include "my.h"
 #include "types.h"
 #include "messages.h"
@@ -30,28 +23,33 @@ void	display_winner_msg(game_status_t status)
 	}
 }
 
+void	loop_game(parser_t *prompt, navy_game_t *game, player_t *turn)
+{
+	display_game(game);
+	if (*turn % 2 == game->me) {
+		prompt_instruction(prompt);
+		send_attack_query(prompt, iface.epid);
+		dispatch_response_query(game, prompt);
+	} else {
+		*prompt = receive_attack_query();
+		game = send_attack_response(prompt, game, iface.epid);
+	}
+	check_for_winner(*turn, game);
+	(*turn)++;
+}
+
 int	play_game(navy_game_t *game)
 {
 	player_t	turn = P1;
 	parser_t	prompt = {0, 0};
-	
+
 	if (game->me == P1 && !wait_for_connection()) {
 		return (0);
 	} else if (game->me == P2 && !send_connection_sig()) {
 		return (0);
 	}
 	while (game->status == RUNNING && iface.connected)	{
-		display_game(game);
-		if (turn % 2 == game->me) {
-			prompt_instruction(&prompt);
-			send_attack_query(&prompt, iface.epid);
-			dispatch_response_query(game, &prompt);
-		} else {
-			prompt = receive_attack_query();
-			game = send_attack_response(&prompt, game, iface.epid);
-		}
-		check_for_winner(turn, game);
-		turn++;
+		loop_game(&prompt, game, &turn);
 	}
 	display_winner_msg(game->status);
 	return (1);

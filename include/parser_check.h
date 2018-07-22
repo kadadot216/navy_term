@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** parser_check.h
-** File description:
-** Header file for check.c
-*/
-
 #ifndef __PARSER_CHECK_H__
 #define __PARSER_CHECK_H__
 
