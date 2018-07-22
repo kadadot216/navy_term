@@ -204,7 +204,6 @@ int	wait_for_connection(void)
 		my_putstr_fd(2, "\nconnexion timed out...\n");
 		return (0);
 	} else if (iface.connected == 1) {
-		send_query(15, iface.epid);
 		my_putstr_fd(1, "\nenemy connected\n");
 		return (1);
 	}
@@ -222,12 +221,8 @@ int	send_connection_sig(void)
 	send_query(15, iface.epid);
 	usleep(30);
 	kill(iface.epid, SIGUSR1);
-	response = receive_query();
-	if (response == 15) {
-		my_putstr_fd(1, "successfully connected\n");
-		return (1);
-	}
-	return (0);
+	my_putstr_fd(1, "successfully connected\n");
+	return (1);
 }
 
 void	send_attack_query(parser_t *prompt, pid_t epid)
@@ -256,13 +251,14 @@ void	dispatch_response_query(navy_game_t *game, parser_t *prompt)
 	}
 }
 
-void	receive_attack_query(parser_t *prompt)
+parser_t	receive_attack_query(void)
 {
-	int	pos_x = (receive_query() - 1);
-	int	pos_y = (receive_query() - 1);
+	parser_t	query = {0, 0};
 
-	prompt->x = pos_x;
-	prompt->y = pos_y;
+	my_putstr_fd(1, "\nwaiting for enemy's attack...\n");
+	query.x = receive_query() - 1; 
+	query.y = receive_query() - 1; 
+	return (query);
 }
 
 void	send_attack_response(parser_t *p, navy_game_t *game, pid_t epid)
@@ -285,7 +281,7 @@ void	send_attack_response(parser_t *p, navy_game_t *game, pid_t epid)
 int	play_game(navy_game_t *game)
 {
 	player_t	turn = P1;
-	parser_t	prompt;
+	parser_t	prompt = {0, 0};
 	
 	if (game->me == P1 && !wait_for_connection()) {
 		return (0);
@@ -299,7 +295,7 @@ int	play_game(navy_game_t *game)
 			send_attack_query(&prompt, iface.epid);
 			dispatch_response_query(game, &prompt);
 		} else {
-			receive_attack_query(&prompt);
+			prompt = receive_attack_query();
 			send_attack_response(&prompt, game, iface.epid);
 		}
 		check_for_winner(turn, game);
