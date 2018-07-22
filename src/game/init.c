@@ -13,14 +13,14 @@
 
 static navy_game_t	*abort_game_init(navy_game_t *game)
 {
-	while (game->boards[P1]) {
-		game->boards[P1] = destroy_board(game->boards[P1]);
-		game->boards[P2] = destroy_board(game->boards[P2]);
-		game->boards[P1] = NULL;
-		game->boards[P2] = NULL;
+	while (game->boards[0]) {
+		game->boards[0] = destroy_board(game->boards[0]);
+		game->boards[1] = destroy_board(game->boards[1]);
+		game->boards[0] = NULL;
+		game->boards[1] = NULL;
 	}
-	game->total_hits[P1] = 0;
-	game->total_hits[P2] = 0;
+	game->total_hits[0] = 0;
+	game->total_hits[1] = 0;
 	free(game);
 	game = NULL;
 	return (game);
@@ -33,27 +33,26 @@ navy_game_t	*init_game(navy_game_t *game, char const *filepath,
 
 	game->me = player;
 	game->status = ERROR;
-	game->boards[P1] = init_board();
-	game->boards[P2] = init_board();
-	if (!parser_parse_file(game->boards[P1], filepath)) {
+	game->boards[0] = init_board();
+	game->boards[1] = init_board();
+	if (!parser_parse_file(game->boards[0], filepath)) {
 		game = abort_game_init(game);
 		return (NULL);
 	}
-	parser_parse_file(game->boards[P2], filepath);
-	game->total_hits[P1] = 13;
-	game->total_hits[P2] = 13;
+	game->total_hits[0] = 13;
+	game->total_hits[1] = 13;
 	game->status = RUNNING;
 	return (game);
 }
 
 navy_game_t	*destroy_game(navy_game_t *game)
 {
-	game->boards[P1] = destroy_board(game->boards[P1]);
-	game->boards[P2] = destroy_board(game->boards[P2]);
-	game->boards[P1] = NULL;
-	game->boards[P2] = NULL;
-	game->total_hits[P1] = 0;
-	game->total_hits[P2] = 0;
+	game->boards[0] = destroy_board(game->boards[0]);
+	game->boards[1] = destroy_board(game->boards[1]);
+	game->boards[0] = NULL;
+	game->boards[1] = NULL;
+	game->total_hits[0] = 0;
+	game->total_hits[1] = 0;
 	free(game);
 	game = NULL;
 	return (game);

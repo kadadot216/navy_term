@@ -19,7 +19,7 @@ static com_interface_t	init_interface(void)
 	com_interface_t	iface;
 
 	iface.sig.sa_flags = SA_SIGINFO;
-	iface.sig.sa_handler = &receive_bit;
+	iface.sig.sa_sigaction = &receive_bit;
 	sigaction(SIGUSR1, &iface.sig, NULL);
 	sigaction(SIGUSR2, &iface.sig, NULL);
 	iface.bitval = 1;
@@ -39,7 +39,7 @@ int	get_p1pid(char const *arg)
 			return (0);
 		}
 		iface.epid *= 10;
-		iface.epid = (arg[i] - '0');
+		iface.epid += (arg[i] - '0');
 		i++;
 	}
 	return (1);
@@ -61,12 +61,12 @@ int	main(int ac, char **av)
 {
 	navy_game_t	*game = NULL;
 
+	iface = init_interface();
 	game = init_game_as(game, ac, av);
 	if (game == NULL) {
 		my_putstr_fd(2, "Something's wrong.\n");
 		return (84);
 	}
-	iface = init_interface();
 	if (play_game(game) == 0) {
 		return (84);
 	}

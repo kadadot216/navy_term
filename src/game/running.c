@@ -14,7 +14,7 @@
 #include "types.h"
 #include "game.h"
 
-#define	SLEEP	(5000000)
+#define	SLEEP	(50000000)
 
 extern com_interface_t	iface;
 
@@ -52,7 +52,7 @@ void	receive_bit(int sig, siginfo_t *info, void *context)
 	}
 }
 
-int	receive_query(int value)
+int	receive_query(void)
 {
 	int	received = 0;
 	int	tstat = 0;
@@ -71,22 +71,20 @@ int	receive_query(int value)
 int	receive_connection_query(void)
 {
 	int	query = 0;
-	struct sigaction	epid_handle;
-	struct sigaction	unsafe_sig;
 
-	unsafe_sig.sa_flags = SA_SIGINFO;
-	unsafe_sig.sa_handler = &receive_bit_unsafe;
-	epid_handle.sa_flags = SA_SIGINFO;
-	epid_handle.sa_handler = &get_p2pid;
-	sigaction(SIGUSR1, &unsafe_sig, NULL);
-	sigaction(SIGUSR2, &unsafe_sig, NULL);
-	query = receive_query(15);
+	iface.sig.sa_sigaction = &receive_bit_unsafe;
+	sigaction(SIGUSR1, &iface.sig, NULL);
+	sigaction(SIGUSR2, &iface.sig, NULL);
+	query = receive_query();
 	if (query == 15) {
-		sigaction(SIGUSR1, &epid_handle, NULL);
+		iface.sig.sa_sigaction = &get_p2pid;
+		sigaction(SIGUSR1, &iface.sig, NULL);
 		if (usleep(SLEEP) != -1) {
 			return (0);
 		}
+		iface.sig.sa_sigaction = &receive_bit;
 		sigaction(SIGUSR1, &iface.sig, NULL);
+		sigaction(SIGUSR2, &iface.sig, NULL);
 		return (1);
 	}
 	return (0);
@@ -96,32 +94,32 @@ int	receive_connection_query(void)
 void	send_query(int value, pid_t epid)
 {
 	int	bitval = 8;
+	int	idx = 3;
+	int	sigword[4] = {0};
 
-	while (value > 0 && value < 15) {
+	while (value > 0 && value < 16 && idx >= 0) {
 		if (value >= bitval) {
-			kill(epid, SIGUSR1);
+			sigword[idx] = SIGUSR2;
 			value -= bitval;
 			bitval /= 2;
-			my_put_nbr(1);
 		}
 		else if (value < bitval) {
-			kill(epid, SIGUSR2);
+			sigword[idx] = SIGUSR1;
 			bitval /= 2;
-			my_put_nbr(0);
 		}
+		idx--;
+	}
+	idx = 0;
+	while (idx < 4) {
+		kill(epid, sigword[idx]);
+		idx++;
 		usleep(10);
 	}
-	my_putchar('\n');
-}
-
-player_t	change_turn(player_t turn)
-{
-	return ((turn + 1) % 2);
 }
 
 void	check_for_winner(player_t turn, navy_game_t *game)
 {
-	if (game->total_hits[turn] == 0) {
+	if (game->total_hits[(turn % 2)] == 0) {
 		game->status = turn + 2;
 	}
 }
@@ -185,9 +183,9 @@ int	dispatch_instruction(parser_t *p, board_t **board)
 void	display_game(navy_game_t *game)
 {
 	my_putstr_fd(1, "my positions:\n");
-	display_board(game->boards[P1]);
-	my_putstr_fd(1, "enemy's positions:\n");
-	display_board(game->boards[P2]);
+	display_board(game->boards[0]);
+	my_putstr_fd(1, "\nenemy's positions:\n");
+	display_board(game->boards[1]);
 	my_putstr_fd(1, "\n");
 }
 
@@ -199,16 +197,18 @@ int	wait_for_connection(void)
 	my_putstr_fd(1, "my pid: ");
 	my_put_nbr(getpid());
 	my_putchar('\n');
+	my_putstr_fd(1, "waiting for enemy connection...\n");
 	iface.connected = receive_connection_query();
 
 	if (iface.connected == 0) {
-		my_putstr_fd(2, "\nConnexion timed out...\n");
+		my_putstr_fd(2, "\nconnexion timed out...\n");
 		return (0);
 	} else if (iface.connected == 1) {
+		send_query(15, iface.epid);
 		my_putstr_fd(1, "\nenemy connected\n");
 		return (1);
 	}
-	my_putstr_fd(1, "Wrond PID or unexcpected signal");
+	my_putstr_fd(2, "wrong PID or unexcpected signal\n");
 	return (0);
 }
 
@@ -216,18 +216,70 @@ int	send_connection_sig(void)
 {
 	int	response = 0;
 
-	my_putstr_fd(1, "Waiting for P1 response\n");
+	my_putstr_fd(1, "my pid: ");
+	my_put_nbr(getpid());
+	my_putchar('\n');
 	send_query(15, iface.epid);
 	usleep(30);
-	kill(SIGUSR1, iface.epid);
-	my_put_nbr(iface.epid);
-	my_putchar('\n');
-	response = receive_query(15);
+	kill(iface.epid, SIGUSR1);
+	response = receive_query();
 	if (response == 15) {
-		return (0);
+		my_putstr_fd(1, "successfully connected\n");
+		return (1);
 	}
-	my_putstr_fd(1, "successfully connected\n");
-	return (1);
+	return (0);
+}
+
+void	send_attack_query(parser_t *prompt, pid_t epid)
+{
+	int	pos_x = (prompt->x + 1);
+	int	pos_y = (prompt->y + 1);
+
+	send_query(pos_x, epid);
+	usleep(10);
+	send_query(pos_y, epid);
+	usleep(10);
+}
+
+void	dispatch_response_query(navy_game_t *game, parser_t *prompt)
+{
+	int	hit = receive_query(); 	
+
+	display_attack_msg(prompt);
+	if (hit == 2) {
+		game->boards[1][prompt->y][prompt->x] = HIT;
+		game->total_hits[1]--;
+		my_putstr_fd(1, "hit\n\n");
+	} else if (hit == 1) {
+		game->boards[1][prompt->y][prompt->x] = MISSED;
+		my_putstr_fd(1, "missed\n\n");
+	}
+}
+
+void	receive_attack_query(parser_t *prompt)
+{
+	int	pos_x = (receive_query() - 1);
+	int	pos_y = (receive_query() - 1);
+
+	prompt->x = pos_x;
+	prompt->y = pos_y;
+}
+
+void	send_attack_response(parser_t *p, navy_game_t *game, pid_t epid)
+{
+	board_t	*position = &game->boards[0][p->y][p->x];
+
+	display_attack_msg(p);
+	if (*position >= L2 && *position <= L5)	 {
+		game->boards[0][p->y][p->x] = HIT;
+		game->total_hits[0]--;
+		send_query(2, epid);
+		my_putstr_fd(1, "hit\n\n");
+	} else if (*position == NONE) {
+		*position = MISSED;
+		send_query(1, epid);
+		my_putstr_fd(1, "missed\n\n");
+	}
 }
 
 int	play_game(navy_game_t *game)
@@ -242,10 +294,16 @@ int	play_game(navy_game_t *game)
 	}
 	while (game->status == RUNNING && iface.connected)	{
 		display_game(game);
-		prompt_instruction(&prompt);
-		game->total_hits[turn] -= dispatch_instruction(&prompt, game->boards[turn]);
+		if (turn % 2 == game->me) {
+			prompt_instruction(&prompt);
+			send_attack_query(&prompt, iface.epid);
+			dispatch_response_query(game, &prompt);
+		} else {
+			receive_attack_query(&prompt);
+			send_attack_response(&prompt, game, iface.epid);
+		}
 		check_for_winner(turn, game);
-		turn = change_turn(turn);
+		turn++;
 	}
 	display_winner_msg(game->status);
 	return (1);
