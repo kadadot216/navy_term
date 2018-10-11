@@ -70,7 +70,7 @@ GDB_MAIN	=	src/main.c
 GDB_NAME	=	gdb.out
 
 
-.PHONY: tclean gclean fclean lclean lfclean $(NAME)
+.PHONY: tclean gclean cclean lclean lfclean $(NAME)
 
 all:	$(NAME)
 
@@ -102,7 +102,7 @@ re: clean fclean $(NAME)
 clean:
 	$(RM) $(OBJ)
 
-fclean:	clean
+cclean:	clean
 	$(RM) $(HDTGR)
 	$(RM) $(LIBTGR)
 	$(RM) $(NAME)
@@ -124,4 +124,4 @@ tclean:
 	$(RM) *.gc*
 	$(RM) $(TEST_NAME)
 
-cclean: tclean gclean fclean libfclean
+fclean: tclean gclean cclean libfclean
