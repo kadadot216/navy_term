@@ -10,7 +10,7 @@
 
 void	debug_board_display(board_t this)
 {
-	int	i = 0;	
+	int	i = 0;
 
 	while (i < BOARD_SIZE) {
 		my_putchar((char) this[i]);

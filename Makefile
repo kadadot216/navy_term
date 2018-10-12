@@ -43,6 +43,7 @@ LIBFLAG		=	-lmy
 SRC		=	src/board/init.c		\
 			src/board/debug.c		\
 			src/board/access.c		\
+			src/game/setup.c		\
 			src/parsing/parse_coords.c	\
 			src/board/display.c
 
@@ -55,6 +56,7 @@ OBJ		+=	$(MAIN:.c=.o)
 TEST_NAME	=	unit_tests
 TEST_SRC	=	tests/board_mapping.c		\
 			tests/incorrect_parsing.c	\
+			tests/game_init.c		\
 			tests/ext/test_board_map_boat.c	\
 			tests/ext/test_fail.c		\
 			tests/redirect_all_std.c

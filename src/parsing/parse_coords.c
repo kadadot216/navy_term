@@ -72,20 +72,3 @@ int	board_map_boat(board_t this, char boat_ref, char *f_cell, char *l_cell)
 	}
 	return (1);
 }
-
-// PLUS
-// =>
-// |
-// v
-
-// MINUS
-// <=
-// ^
-// | 
-
-// 49 - 48 = 1
-// 48 - 49 = -1
-// 2:A1:A2
-// alignement = check_cells_alignment(f, l) => 1
-// distance = ABS(f_cell[alignement] - l_cell[alignement]) => 1
-// A-A = 0
