@@ -46,7 +46,7 @@ Test(board_mapping, setting_coords3, .init=redirect_all_std)
 	board_t	board = {'0'};
 	board_init(board);
 	map_status = test_board_map_boat(board, '2', "C3", "C4");
-	map_status += test_board_map_boat(board, '3', "A1", "C1");
+	map_status += test_board_map_boat(board, '3', "C1", "A1");
 	if (map_status < 2)
 		test_fail();
 	fflush(stdout);
@@ -62,9 +62,9 @@ Test(board_mapping, setting_coords4, .init=redirect_all_std)
 
 	board_t	board = {'0'};
 	board_init(board);
-	map_status = test_board_map_boat(board, '2', "C1", "C2");
+	map_status = test_board_map_boat(board, '2', "C2", "C1");
 	map_status += test_board_map_boat(board, '3', "D4", "F4");
-	map_status += test_board_map_boat(board, '4', "B5", "B8");
+	map_status += test_board_map_boat(board, '4', "B8", "B5");
 	map_status += test_board_map_boat(board, '5', "D7", "H7");
 	if (map_status < 4)
 		test_fail();

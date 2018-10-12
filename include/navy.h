@@ -46,6 +46,19 @@ typedef struct	s_game {
 	int		lives;
 }	game_t;
 
+// PARSING
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+#define	OPEN_MODE	(O_RDONLY)
+#define	PARSE_REQ	(4)
+#define	BUFF_SIZE	(8)
+#define	B_REF		(0)
+#define	F_CELL		(2)
+#define	L_CELL		(5)
+
 // NAVY
 cell_t	*board_get_cell(board_t board, int x, int y);
 cell_t	*board_access_cell(board_t board, char coords[2]);
@@ -61,6 +74,7 @@ game_t	*game_set_role_from_player(game_t *this);
 game_t	*game_set_board(game_t *this);
 game_t	*game_set_lives(game_t *this);
 game_t	game_setup(player_t player);
+int	game_parse_map(game_t *this, char const *filename);
 
 // PRINTING
 void	print_help_msg(char const *pname);

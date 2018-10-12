@@ -44,7 +44,8 @@ SRC		=	src/board/init.c		\
 			src/board/debug.c		\
 			src/board/access.c		\
 			src/game/setup.c		\
-			src/parsing/parse_coords.c	\
+			src/parsing/board_map_boat.c	\
+			src/parsing/parse_file.c	\
 			src/board/display.c
 
 MAIN		=	src/main.c
@@ -57,6 +58,8 @@ TEST_NAME	=	unit_tests
 TEST_SRC	=	tests/board_mapping.c		\
 			tests/incorrect_parsing.c	\
 			tests/game_init.c		\
+			tests/file_parsing.c		\
+			tests/file_parsing2.c		\
 			tests/ext/test_board_map_boat.c	\
 			tests/ext/test_fail.c		\
 			tests/redirect_all_std.c

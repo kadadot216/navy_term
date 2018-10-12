@@ -12,12 +12,10 @@ int	main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
-	board_t	board = {0};
-	char	c1[2] = "F5";
-	char	c2[2] = "F9";
+	game_t	game = game_setup(P1);
+	int	parsing_status = 0;
 
-	board_init(board);
-	board_map_boat(board, '5', c1, c2);
-	debug_board_display(board);
+	parsing_status = game_parse_map(&game, av[1]);
+	board_display(game.board);
 	return (0);
 }
