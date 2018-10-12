@@ -5,7 +5,7 @@
 ## Makefile for my_runner
 ##
 
-CC		=	gcc -W -Wall -Wextra
+CC		=	gcc -W -Wall -Wextra -Werror
 DBCC		=	gcc -g
 RM		=	rm -f
 
@@ -40,21 +40,8 @@ CFLAGS		+=	-I$(HDPATH)
 NAME		=	navy
 LDFLAGS		=	-L./lib
 LIBFLAG		=	-lmy
-SRC		=	src/messages.c			\
-			src/argparse.c			\
-			src/game/action_queries.c	\
-			src/game/connect.c		\
-			src/game/display.c		\
-			src/game/init.c			\
-			src/game/interface.c		\
-			src/game/prompt.c		\
-			src/game/query.c		\
-			src/game/running.c		\
-			src/board/init.c		\
-			src/display/display_board.c	\
-			src/parser/filesys.c		\
-			src/parser/checks.c		\
-			src/parser/helpers.c
+SRC		=	src/board/init.c	\
+			src/board/display.c
 
 MAIN		=	src/main.c
 

@@ -13,23 +13,12 @@
 #include "types.h"
 #include "defs.h"
 
-int	open_file(char const *filepath)
-{
-	int	fd = 0;
-
-	fd = open(filepath, O_RDONLY);
-	if (fd == -1) {
-		my_putstr_fd(2, "Error during file opening\n");
-		return (-1);
-	}
-	return (fd);
-}
 
 int	parser_read_entries(char *buffer, char const *filepath)
 {
 	int	fd = 0;
 
-	fd = open_file(filepath);
+	fd = open(filepath, O_RDONLY);
 	if (fd == -1 || read(fd, buffer, BUFFLEN) != BUFFLEN) {
 		my_memset(buffer, '\0', BUFFLEN);
 		return (0);

@@ -10,6 +10,6 @@
 
 #define	ABS(x)	((x < 0) ? (-x) : (x))
 #define	HIGHEST(x, y)	((x > y) ? x : y)
-#define	LOWEST(x, y)	((x > y) ? y : x)
+#define	LOWEST(x, y)	((x < y) ? x : y)
 
 #endif
