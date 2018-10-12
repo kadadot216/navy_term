@@ -31,12 +31,17 @@ typedef enum	e_player {
 
 
 // NAVY
-cell_t	board_get_cell(board_t board, int x, int y);
+cell_t	*board_get_cell(board_t board, int x, int y);
+cell_t	*board_access_cell(board_t board, char coords[2]);
 cell_t	*init_board(board_t this);
 cell_t	*board_init(board_t this);
 void	board_display(board_t this);
+int	board_map_boat(board_t this, char bref, char *f_cell, char *l_cell);
 
 // PRINTING
 void	print_help_msg(char const *pname);
+
+// DEBUG
+void	debug_board_display(board_t this);
 
 #endif /* __NAVY_H__ */

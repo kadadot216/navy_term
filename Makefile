@@ -40,7 +40,10 @@ CFLAGS		+=	-I$(HDPATH)
 NAME		=	navy
 LDFLAGS		=	-L./lib
 LIBFLAG		=	-lmy
-SRC		=	src/board/init.c	\
+SRC		=	src/board/init.c		\
+			src/board/debug.c		\
+			src/board/access.c		\
+			src/parsing/parse_coords.c	\
 			src/board/display.c
 
 MAIN		=	src/main.c
@@ -50,10 +53,14 @@ OBJ		+=	$(MAIN:.c=.o)
 
 #	Tests settings
 TEST_NAME	=	unit_tests
-TEST_SRC	=	tests/criterion.c
+TEST_SRC	=	tests/board_mapping.c		\
+			tests/ext/test_board_map_boat.c	\
+			tests/ext/test_fail.c		\
+			tests/redirect_all_std.c
+TCFLAGS		=	-I./tests/include
 TEST_FLAGS	=	--coverage -lcriterion
 
-GDB_MAIN	=	src/main.c
+GDB_MAIN	=	tests/main.c
 GDB_NAME	=	gdb.out
 
 
@@ -103,8 +110,8 @@ gclean:
 	$(RM) $(GDB_NAME)
 
 tests_run:
-	$(CC) $(CFLAGS) -o $(TEST_NAME) $(TEST_SRC) $(SRC) $(LIB_SRC)	\
-		$(TEST_FLAGS)
+	$(CC) $(TCFLAGS) $(CFLAGS) -o $(TEST_NAME) $(TEST_SRC) $(SRC)	\
+		$(LIB_SRC) $(TEST_FLAGS)
 	./$(TEST_NAME)
 
 tclean:
