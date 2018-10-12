@@ -11,6 +11,8 @@
 #define	SIZE_X		(8)
 #define	SIZE_Y		(8)
 #define	BOARD_SIZE	((SIZE_X) * (SIZE_Y))
+#define	MAX_X		((SIZE_X) - 1)
+#define	MAX_Y		((SIZE_Y) - 1)
 
 typedef enum	e_cell {
 	CELL_HIT = 'o',

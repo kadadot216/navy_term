@@ -54,6 +54,7 @@ OBJ		+=	$(MAIN:.c=.o)
 #	Tests settings
 TEST_NAME	=	unit_tests
 TEST_SRC	=	tests/board_mapping.c		\
+			tests/incorrect_parsing.c	\
 			tests/ext/test_board_map_boat.c	\
 			tests/ext/test_fail.c		\
 			tests/redirect_all_std.c

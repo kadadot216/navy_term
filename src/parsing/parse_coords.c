@@ -24,6 +24,31 @@ int	cells_valid_ref_distance(int cell_distance, char boat_ref)
 	return (ABS(cell_distance) == (boat_ref - '0'));
 }
 
+int	cell_path_crossed(board_t this, char *cell_ref, int align, int dist)
+{
+	cell_t	*elem_test = NULL;
+	char	cell_copy[2] = {cell_ref[0], cell_ref[1]};
+
+	while (dist > 0) {
+		elem_test = board_access_cell(this, cell_copy);
+		if (*elem_test != CELL_UNK) {
+			return (0);
+		}
+		cell_copy[align]++;
+		dist--;
+	}
+	return (1);
+}
+
+int	cell_inboard(char *cl)
+{
+	int	cell_not_empty = ((cl[0] != 0) && (cl[1] != 0));
+	int	in_x_axis = ((cl[0] >= 0 + 'A') && (cl[0] <= MAX_X + 'A'));
+	int	in_y_axis = ((cl[1] >= 0 + '1') && (cl[1] <= MAX_Y + '1'));
+
+	return ((cell_not_empty) && (in_x_axis) && (in_y_axis));
+}
+
 int	board_map_boat(board_t this, char boat_ref, char *f_cell, char *l_cell)
 {
 	int	alignment = -1;
@@ -32,11 +57,12 @@ int	board_map_boat(board_t this, char boat_ref, char *f_cell, char *l_cell)
 	cell_t	*elem = NULL;
 
 	alignment = check_cells_alignment(f_cell, l_cell);
-	if (alignment == -1)
+	if (alignment == -1 || !cell_inboard(f_cell) || !cell_inboard(l_cell))
 		return (-1);
 	distance = (l_cell[alignment] - f_cell[alignment] + 1);
 	cell_ref = (distance > 0) ? (f_cell) : (l_cell);
-	if (!cells_valid_ref_distance(distance, boat_ref))
+	if (!cells_valid_ref_distance(distance, boat_ref) ||
+		!cell_path_crossed(this, cell_ref, alignment, distance))
 		return (-1);
 	while (distance > 0) {
 		elem = board_access_cell(this, cell_ref);
