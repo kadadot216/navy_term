@@ -64,6 +64,8 @@ TEST_SRC	=	tests/board_mapping.c		\
 			tests/game_init.c		\
 			tests/file_parsing.c		\
 			tests/file_parsing2.c		\
+			tests/get_idx_from_coords.c	\
+			tests/retrieve_idx_from_bits.c	\
 			tests/ext/test_board_map_boat.c	\
 			tests/ext/test_fail.c		\
 			tests/redirect_all_std.c

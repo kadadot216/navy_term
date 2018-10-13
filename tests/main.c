@@ -24,6 +24,6 @@ int	main(int ac, char **av)
 	res = message_retrieve_value(&query);
 	printf("Retrieved value is: %d\n", res);
 	game.board[res] = CELL_HIT;
-	board_display(game.board);
+	debug_board_display(game.board);
 	return (0);
 }
