@@ -21,6 +21,8 @@ char	*prompt_attack(char *buffer);
 // SIGQUERY
 sigquery_t	*sq_compose_query(sigquery_t *this, char *prompt);
 int	sq_compose_nb(sigquery_t *this, char *prompt);	//DELET
+char	*get_coords_from_idx(char *buffer, int idx);
+void	sq_display_bitfield(sigquery_t *this);
 
 
 #endif /* __SIGNALS_H__ */

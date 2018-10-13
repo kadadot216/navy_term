@@ -49,25 +49,46 @@ int	sq_compose_nb(sigquery_t *this, char *prompt) //DELET
 	printf("Encoded number: %d\n", nb);
 	return (nb);
 }
-//"C2" => board[10] => case C2
+int	get_idx_from_coords(char *prompt)
+{
+	int	idx = 0;
+	idx += (prompt[0] - 'A');
+	printf("Encoded number: %d\n", idx);
+	idx += ((prompt[1] - '1') * (1 << 3)); // or SIZE_X
+	printf("Encoded number: %d\n", idx);
+	return (idx);
+}
+
+// SEND CASE : "C2" => board[10] => case C2
+
+// RECEIVE CASE : "C2" => (BigEnd) [00][010100] => Check at 10 => decypher => "C2"
+char	*get_coords_from_idx(char *buffer, int idx)
+{
+	buffer[0] = idx % (1 << 3) + 'A';
+	buffer[1] = idx / (1 << 3) + '1';
+	return (buffer);
+}
 
 sigquery_t	*sq_compose_query(sigquery_t *this, char *prompt)
 {
 	int	bidx = 0;
-	int	nb = 0;
+	int	idx = 0;
 
-	(void)this;
-	(void)bidx;
-	nb += (prompt[0] - 'A');
-	printf("Encoded number: %d\n", nb);
-	nb += ((prompt[1] - '1') * (1 << 3)); // or SIZE_X
-	printf("Encoded number: %d\n", nb);
+	idx = get_idx_from_coords(prompt);
+	while (bidx < 6) {
+		this->coords = (idx % (1 << bidx));
+		bidx++;
+	}
 	return (0);
 }
-//"C2" => (BigEnd) [00][010100] => Check at 10 => decypher => "C2"
-char	*get_coords_from_idx(char *buffer, int idx)
+
+void	sq_display_bitfield(sigquery_t *this)
 {
-	buffer[0] = idx % 8 + 'A';
-	buffer[1] = idx / 8 + '1';
-	return (buffer);
+	int	bidx = 0;
+
+	while (bidx < 6) {
+		printf("%d ", this->coords % (1 << bidx));
+		bidx++;
+	}
+	printf("\n");
 }
