@@ -31,13 +31,13 @@ typedef enum	e_player {
 	P2
 }	player_t;
 
+#define	NUM(x)	((x) - '0')
+#define	LIVES	((NUM(CELL_2)) + (NUM(CELL_3)) + (NUM(CELL_4)) + (NUM(CELL_5)))
+
 typedef enum	e_role {
 	ROLE_PLAY,
 	ROLE_WAIT
 }	role_t;
-
-#define	NUM(x)	((x) - '0')
-#define	LIVES	((NUM(CELL_2)) + (NUM(CELL_3)) + (NUM(CELL_4)) + (NUM(CELL_5)))
 
 typedef struct	s_game {
 	player_t	me;
@@ -45,6 +45,11 @@ typedef struct	s_game {
 	board_t		board;
 	int		lives;
 }	game_t;
+
+// ARGPARSE
+
+int	check_for_help(int ac, char **av);
+
 
 // PARSING
 
@@ -64,7 +69,6 @@ typedef struct	s_game {
 #define	L_CELL		(5)
 #define	PARSE_TAIL	(7)
 
-// PARSING
 int	cell_inboard(char *cl);
 
 // NAVY
@@ -82,6 +86,7 @@ game_t	*game_set_role_from_player(game_t *this);
 game_t	*game_set_board(game_t *this);
 game_t	*game_set_lives(game_t *this);
 game_t	game_setup(player_t player);
+game_t	*game_unset(game_t *this);
 int	game_parse_map(game_t *this, char const *filename);
 
 // PRINTING
