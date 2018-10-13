@@ -25,6 +25,13 @@ sigquery_t	*sq_reset_coords(sigquery_t *this)
 	return (this);
 }
 
+sigquery_t	*sq_reset(sigquery_t *this)
+{
+	this = sq_reset_header(this);
+	this = sq_reset_coords(this);
+	return (this);
+}
+
 sigquery_t	sq_new(void)
 {
 	sigquery_t	new;

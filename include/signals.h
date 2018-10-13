@@ -23,15 +23,44 @@ typedef	struct s_sigquery {
 
 #define	BASE_2	(2)
 
+#include <sys/types.h>
+#include <signal.h>
+
+typedef struct sigaction	sigaction_t;
+
+typedef enum	e_irole {
+	I_PLAY,
+	I_WAIT
+}	irole_t;
+
+typedef struct	s_interface {
+	bit_t		connected:1;
+	irole_t		role;
+	sigquery_t	uquery;
+	pid_t		epid;
+	sigaction_t	sig;
+}	interface_t;
+
+interface_t	com_interface;
+
+// COM_INTERFACE
+interface_t	*interface_init(interface_t *this);
+interface_t	*interface_reset_query(interface_t *this);
+interface_t	*interface_set_query(interface_t *this, char *prompt);
+interface_t	*interface_set_pid(interface_t *this, pid_t pid);
+interface_t	*interface_set_role(interface_t *this, int role);
+
 // PROMPT
 char	*prompt_attack(char *buffer);
 
 // DEBUG
 void	sq_display_bitfield(sigquery_t *this);
+void	sq_display_header(sigquery_t *this);
 
 // SIGQUERY
 sigquery_t	sq_new(void);
 sigquery_t	*sq_compose_msg_query(sigquery_t *this, char *prompt);
+sigquery_t	*sq_reset(sigquery_t *this);
 int	sq_compose_nb(sigquery_t *this, char *prompt);	//DELET
 char	*get_coords_from_idx(char *buffer, int idx);
 int	message_retrieve_value(sigquery_t *this);

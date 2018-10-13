@@ -25,6 +25,8 @@ LIB_SRCS	=	my_putstr_fd.c		\
 			my_strncpy.c		\
 			my_putchar.c		\
 			my_strlen.c		\
+			my_str_isnum.c		\
+			my_getnbr.c		\
 			my_put_nbr.c		\
 			my_putcharx_fd.c	\
 			my_strcmp.c		\
@@ -46,6 +48,8 @@ SRC		=	src/board/init.c		\
 			src/signals/query.c		\
 			src/signals/bit_processing.c	\
 			src/signals/coords_processing.c	\
+			src/signals/com_interface.c	\
+			src/signals/com_act_interface.c	\
 			src/signals/debug.c		\
 			src/game/setup.c		\
 			src/parsing/board_map_boat.c	\
