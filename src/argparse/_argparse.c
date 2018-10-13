@@ -10,6 +10,13 @@
 
 extern	com_interface_t	iface;
 
+// Rewriting the function
+// get_p1pid
+// if (!my_strisnum(arg))
+// 	return (-1);
+// else
+// 	pid = my_getnbr(arg);
+
 int	get_p1pid(char const *arg)
 {
 	int	i = 0;
