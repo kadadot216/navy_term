@@ -44,6 +44,9 @@ SRC		=	src/board/init.c		\
 			src/board/debug.c		\
 			src/board/access.c		\
 			src/signals/query.c		\
+			src/signals/bit_processing.c	\
+			src/signals/coords_processing.c	\
+			src/signals/debug.c		\
 			src/game/setup.c		\
 			src/parsing/board_map_boat.c	\
 			src/parsing/parse_file.c	\

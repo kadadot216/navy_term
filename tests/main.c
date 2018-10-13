@@ -15,11 +15,15 @@ int	main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
-	//game_t	game = game_setup(P1);
+	game_t	game = game_setup(P1);
 	sigquery_t	query = sq_new();
+	int	res = 0;
 
-	sq_compose_query(&query, "D2");
+	sq_compose_msg_query(&query, av[1]);
 	sq_display_bitfield(&query);
-	//board_display(game.board);
+	res = message_retrieve_value(&query);
+	printf("Retrieved value is: %d\n", res);
+	game.board[res] = CELL_HIT;
+	board_display(game.board);
 	return (0);
 }
