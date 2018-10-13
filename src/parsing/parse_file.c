@@ -15,7 +15,12 @@ int	game_map_boat(game_t *this, char *line)
 	char	*boat_ref = &line[B_REF];
 	char	*f_cell = &line[F_CELL];
 	char	*l_cell = &line[L_CELL];
+	char	*f_sep = &line[F_SEP];
+	char	*l_sep = &line[L_SEP];
+	char	*tail = &line[PARSE_TAIL];
 
+	if (*f_sep != PARSE_SEP || *l_sep != PARSE_SEP || *tail != '\n')
+		return (-1);
 	return (board_map_boat(this->board, *boat_ref, f_cell, l_cell));
 }
 

@@ -53,11 +53,16 @@ typedef struct	s_game {
 #include <fcntl.h>
 
 #define	OPEN_MODE	(O_RDONLY)
+#define	PARSE_SEP	(':')
 #define	PARSE_REQ	(4)
 #define	BUFF_SIZE	(8)
+
 #define	B_REF		(0)
+#define	F_SEP		(1)
 #define	F_CELL		(2)
+#define	L_SEP		(4)
 #define	L_CELL		(5)
+#define	PARSE_TAIL	(7)
 
 // NAVY
 cell_t	*board_get_cell(board_t board, int x, int y);
