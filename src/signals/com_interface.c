@@ -35,7 +35,7 @@ interface_t	*interface_reset_query(interface_t *this)
 interface_t	*interface_init(interface_t *this)
 {
 	this->connected = 0;
-	this->epid  = 0;
+	this->epid = (pid_t) 0;
 	sq_reset(&this->uquery);
 	return (this);
 }

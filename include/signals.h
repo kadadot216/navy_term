@@ -41,7 +41,7 @@ typedef struct	s_interface {
 	sigaction_t	sig;
 }	interface_t;
 
-interface_t	com_interface;
+extern interface_t	com_interface;
 
 // COM_INTERFACE
 interface_t	*interface_init(interface_t *this);

@@ -8,7 +8,7 @@
 #include "navy.h"
 #include "signals.h"
 
-extern	interface_t	interface;
+interface_t	interface;
 
 void	interface_act_set_pid(pid_t pid)
 {
@@ -30,7 +30,13 @@ void	interface_act_init(void)
 	interface_init(&interface);
 }
 
-void	interface_update_role(game_t *game)
+void	interface_act_update_role(game_t *game)
 {
 	interface_set_role(&interface, (int)game->role);
+}
+
+void	interface_act_init_as(game_t *game)
+{
+	interface_act_init();
+	interface_act_update_role(game);
 }

@@ -8,11 +8,11 @@
 #include <stdio.h>
 #include "signals.h"
 
-extern interface_t	interface;
+interface_t	interface;
 
 void	db_interface_print_pid(void)
 {
-	printf("Ennemy's PID: %d\n", (int)&interface.epid);
+	printf("Ennemy's PID: %d\n", (int)interface.epid);
 }
 
 void	db_interface_print_query(void)
@@ -25,6 +25,16 @@ void	db_interface_print_header(void)
 	sq_display_header(&interface.uquery);
 }
 
+void	db_interface_print_role(void)
+{
+	char	*messages[] = {
+		"PLAYING",
+		"WAITING"
+	};
+
+	printf("Role: %s\n", messages[interface.role]);
+}
+
 void	db_interface_print_connected(void)
 {
 	char	*messages[] = {
@@ -33,4 +43,13 @@ void	db_interface_print_connected(void)
 	};
 
 	printf("Interface %s\n", messages[interface.connected]);
+}
+
+void	db_interface_printall(void)
+{
+	db_interface_print_connected();
+	db_interface_print_role();
+	db_interface_print_pid();
+	db_interface_print_header();
+	db_interface_print_query();
 }
