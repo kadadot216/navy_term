@@ -12,6 +12,7 @@
 #include <criterion/redirect.h>
 #include <stdio.h>
 
+int	my_strtablen(char **av);
 void	redirect_all_std(void);
 void	test_fail(void);
 

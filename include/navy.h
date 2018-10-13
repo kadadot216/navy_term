@@ -48,6 +48,7 @@ typedef struct	s_game {
 
 // ARGPARSE
 
+int	navy_argchecks(int ac, char **av);
 int	check_for_help(int ac, char **av);
 
 

@@ -44,6 +44,7 @@ LDFLAGS		=	-L./lib
 LIBFLAG		=	-lmy
 SRC		=	src/board/init.c			\
 			src/board/debug.c			\
+			src/ext/my_arg_exists.c			\
 			src/board/access.c			\
 			src/msg/help_msg.c			\
 			src/argparse/argparse.c			\
@@ -70,11 +71,13 @@ TEST_SRC	=	tests/board_mapping.c		\
 			tests/incorrect_parsing.c	\
 			tests/game_init.c		\
 			tests/file_parsing.c		\
+			tests/argchecks.c		\
 			tests/file_parsing2.c		\
 			tests/get_idx_from_coords.c	\
 			tests/retrieve_idx_from_bits.c	\
 			tests/ext/test_board_map_boat.c	\
 			tests/ext/test_fail.c		\
+			tests/ext/my_strtablen.c	\
 			tests/redirect_all_std.c
 TCFLAGS		=	-I./tests/include
 TEST_FLAGS	=	--coverage -lcriterion
