@@ -90,6 +90,10 @@ game_t	game_setup(player_t player);
 game_t	*game_unset(game_t *this);
 int	game_parse_map(game_t *this, char const *filename);
 
+// SETUP AS
+game_t	game_setup_as(int ac);
+
+
 // PRINTING
 void	print_help_msg(char const *pname);
 
