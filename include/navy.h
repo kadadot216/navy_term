@@ -64,6 +64,9 @@ typedef struct	s_game {
 #define	L_CELL		(5)
 #define	PARSE_TAIL	(7)
 
+// PARSING
+int	cell_inboard(char *cl);
+
 // NAVY
 cell_t	*board_get_cell(board_t board, int x, int y);
 cell_t	*board_access_cell(board_t board, char coords[2]);

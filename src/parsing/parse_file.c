@@ -43,10 +43,10 @@ int	game_parse_map_fd(game_t *this, int const fd)
 int	game_parse_map(game_t *this, char const *filename)
 {
 	int	fd = 0;
+
 	fd = open(filename, OPEN_MODE);
 	if (fd == -1 || (game_parse_map_fd(this, fd) == -1))
 		return (-1);
-
 	fd = close(fd);
 	if (fd == -1)
 		return (-1);

@@ -40,7 +40,7 @@ static int	cell_path_crossed(board_t this, char *cell_ref, int align, int dist)
 	return (1);
 }
 
-static int	cell_inboard(char *cl)
+int	cell_inboard(char *cl)
 {
 	int	cell_not_empty = ((cl[0] != 0) && (cl[1] != 0));
 	int	in_x_axis = ((cl[0] >= 0 + 'A') && (cl[0] <= MAX_X + 'A'));
