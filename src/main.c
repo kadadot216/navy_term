@@ -2,19 +2,23 @@
 ** EPITECH PROJECT, 2018
 ** main.c
 ** File description:
-** Main for navy game
+** Main file for GDB debuging
 */
 
-#include "navy.h"
-#include "my.h"
+#include "main.h"
 
 int	main(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
-	board_t	board = {0};
+	int	status = 0;
 
-	board_init(board);
-	debug_board_display(board);
-	return (0);
+	if (check_for_help(ac, av)) {
+		print_help_msg(av[0]);
+		return (0);
+	}
+	if (!navy_argchecks(ac, av)) {
+		print_help_msg(av[0]);
+		return (84);
+	}
+	status = navy_game(ac, av);
+	return (status);
 }

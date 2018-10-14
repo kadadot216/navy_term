@@ -40,6 +40,34 @@ sigquery_t	*set_message_bit(sigquery_t *this, int value)
 	return (this);
 }
 
+sigquery_t	*sq_header_set_msg(sigquery_t *this)
+{
+	this->h1 = 0;
+	this->h2 = 1;
+	return (this);
+}
+
+sigquery_t	*sq_header_set_response(sigquery_t *this, int hit)
+{
+	this->h1 = 1;
+	this->h2 = hit;
+	return (this);
+}
+
+sigquery_t	*sq_header_set_cut(sigquery_t *this)
+{
+	this->h1 = 0;
+	this->h2 = 0;
+	return (this);
+}
+
+sigquery_t	*sq_cut_connection(sigquery_t *this)
+{
+	this = sq_header_set_cut(this);
+	this = set_message_bit(this, 63);
+	return (this);
+}
+
 sigquery_t	*sq_compose_msg_query(sigquery_t *this, char *prompt)
 {
 	int	idx = 0;

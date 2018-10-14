@@ -42,23 +42,29 @@ CFLAGS		+=	-I$(HDPATH)
 NAME		=	navy
 LDFLAGS		=	-L./lib
 LIBFLAG		=	-lmy
-SRC		=	src/board/init.c			\
+SRC		=	src/game.c				\
+			src/turn.c				\
+			src/board/init.c			\
 			src/board/debug.c			\
 			src/ext/my_arg_exists.c			\
 			src/board/access.c			\
 			src/msg/help_msg.c			\
 			src/argparse/argparse.c			\
 			src/signals/query.c			\
+			src/signals/query_checks.c		\
 			src/signals/pid.c			\
 			src/signals/bit_processing.c		\
 			src/signals/coords_processing.c		\
 			src/signals/com_interface.c		\
+			src/signals/com_interface2.c		\
 			src/signals/com_interface_act.c		\
 			src/signals/com_interface_act2.c	\
+			src/signals/com_interface_act3.c	\
+			src/signals/com_interface_act4.c	\
+			src/signals/com_interface_act5.c	\
 			src/signals/sigactions.c		\
-			src/signals/com_interface_debug.c	\
-			src/signals/debug.c			\
 			src/game/setup.c			\
+			src/game/setup2.c			\
 			src/game/setup_as.c			\
 			src/game/update.c			\
 			src/prompt/prompt.c			\

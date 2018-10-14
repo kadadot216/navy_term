@@ -10,7 +10,6 @@
 
 #include "signals.h"
 
-// SIGACTIONS
 void	sig_get_epid(int sig, siginfo_t *info, void *context);
 void	sig_get_query(int sig, siginfo_t *info, void *context);
 

@@ -16,3 +16,10 @@ int	bit_retrieve_value(bit_t b, int n)
 	return (0);
 	
 }
+
+bit_t	bit_from_sig(int signal)
+{
+	if (signal == SIGUSR2)
+		return (1);
+	return (0);
+}

@@ -45,27 +45,3 @@ interface_t	*interface_init(interface_t *this)
 	this = interface_init_sig(this);
 	return (this);
 }
-
-interface_t	*interface_set_connected(interface_t *this)
-{
-	this->connected = 1;
-	return (this);
-}
-
-interface_t	*interface_set_disconnected(interface_t *this)
-{
-	this->connected = 0;
-	return (this);
-}
-
-interface_t	*interface_set_timeout(interface_t *this)
-{
-	this->timeout = 1;
-	return (this);
-}
-
-interface_t	*interface_set_role(interface_t *this, int role)
-{
-	this->role = (irole_t)role;
-	return (this);
-}

@@ -7,10 +7,13 @@
 
 #include <stdio.h>
 #include "signals.h"
+#include "my.h"
 
 void	print_my_pid(void)
 {
 	pid_t	my_pid = getpid();
 
-	printf("my_pid: %d\n", my_pid);
+	my_putstr_fd(1, "my_pid: ");
+	my_put_nbr((int)my_pid);
+	my_putstr_fd(1, "\n");
 }
