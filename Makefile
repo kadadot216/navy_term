@@ -60,6 +60,8 @@ SRC		=	src/board/init.c			\
 			src/signals/debug.c			\
 			src/game/setup.c			\
 			src/game/setup_as.c			\
+			src/game/update.c			\
+			src/prompt/prompt.c			\
 			src/parsing/board_map_boat.c		\
 			src/parsing/parse_file.c		\
 			src/board/display.c

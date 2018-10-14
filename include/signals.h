@@ -57,6 +57,7 @@ void	print_my_pid(void);
 // COM_INTERFACE
 interface_t	*interface_init(interface_t *this);
 interface_t	*interface_reset_query(interface_t *this);
+interface_t	*interface_init_sig(interface_t *this);
 interface_t	*interface_set_query(interface_t *this, char *prompt);
 interface_t	*interface_set_pid(interface_t *this, pid_t pid);
 interface_t	*interface_set_role(interface_t *this, int role);

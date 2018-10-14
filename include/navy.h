@@ -88,7 +88,9 @@ game_t	*game_set_board(game_t *this);
 game_t	*game_set_lives(game_t *this);
 game_t	game_setup(player_t player);
 game_t	*game_unset(game_t *this);
+game_t	*game_update_role(game_t *this);
 int	game_parse_map(game_t *this, char const *filename);
+char	*prompt_attack(char *buffer);
 
 // SETUP AS
 game_t	game_setup_as(int ac);

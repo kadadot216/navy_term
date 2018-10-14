@@ -12,6 +12,20 @@
 
 interface_t	interface;
 
+void	interface_act_send_hello(void)
+{
+	kill(interface.epid, SIGUSR1);
+}
+
+int	init_check_connected(void)
+{
+	if (connection_timed_out() || interface.epid == 0 ||
+		!interface_connected())
+		return (0);
+	else
+		return (1);
+}
+
 void	interface_act_parse_pid(char const *arg)
 {
 	interface_act_set_pid((pid_t) (my_getnbr(arg)));
@@ -27,6 +41,7 @@ void	interface_act_wait_for_epid(void)
 	timeout = !(usleep(TIME_OUT));
 	if (timeout)
 		interface_act_set_timeout();
+	interface_act_reset_sig();
 }
 
 void	interface_send_bit(bit_t this)
@@ -65,50 +80,53 @@ int	interface_act_receive_query(void)
 	int	sigfield[8] = {0};
 
 	interface.sig.sa_sigaction = &sig_get_query;
-
-	while (interface.bc < 6) {
+	sigaction(SIGUSR1, &interface.sig, NULL);
+	sigaction(SIGUSR2, &interface.sig, NULL);
+	while (interface.bc != 8) {
 		timeout = !(usleep(TIME_OUT));
 		if (timeout) {
 			interface_act_set_timeout();
+			interface_act_reset_query();
 			return (-1);
 		}
 		sigfield[interface.bc] = interface.signal;
 	}
 	interface_map_query(&interface, sigfield);
+	interface_act_reset_sig();
 	return (1);
 }
 
-void	interface_act_send_query(sigquery_t *query)
+int	interface_act_retrieve_coords(void)
 {
-	interface_send_bit(query->h1);
+	int	index = -1;
+
+	index = message_retrieve_value(&interface.uquery);
+	interface_act_reset_query();
+	return (index);
+}
+
+void	interface_act_send_query(void)
+{
+	interface_send_bit(interface.uquery.h1);
 	usleep(WAIT_OFFSET);
-	interface_send_bit(query->h2);
+	interface_send_bit(interface.uquery.h2);
 	usleep(WAIT_OFFSET);
-	interface_send_bit(query->c1);
+	interface_send_bit(interface.uquery.c1);
 	usleep(WAIT_OFFSET);
-	interface_send_bit(query->c2);
+	interface_send_bit(interface.uquery.c2);
 	usleep(WAIT_OFFSET);
-	interface_send_bit(query->c3);
+	interface_send_bit(interface.uquery.c3);
 	usleep(WAIT_OFFSET);
-	interface_send_bit(query->c4);
+	interface_send_bit(interface.uquery.c4);
 	usleep(WAIT_OFFSET);
-	interface_send_bit(query->c5);
+	interface_send_bit(interface.uquery.c5);
 	usleep(WAIT_OFFSET);
-	interface_send_bit(query->c6);
+	interface_send_bit(interface.uquery.c6);
 	usleep(WAIT_OFFSET);
 	interface_act_reset_query();
 }
 
-void	interface_act_send_hello(void)
+void	interface_act_compose_query(char *prompt)
 {
-	kill(interface.epid, SIGUSR1);
-}
-
-int	init_check_connected(void)
-{
-	if (connection_timed_out() || interface.epid == 0 ||
-		!interface_connected())
-		return (0);
-	else
-		return (1);
+	sq_compose_msg_query(&interface.uquery, prompt);
 }

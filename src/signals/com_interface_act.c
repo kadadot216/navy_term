@@ -65,6 +65,11 @@ int	interface_connected(void)
 	return (interface.connected);
 }
 
+void	interface_act_reset_sig(void)
+{
+	interface_init_sig(&interface);
+}
+
 void	interface_act_init_as(game_t *game)
 {
 	interface_act_init();

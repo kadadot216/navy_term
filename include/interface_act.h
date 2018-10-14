@@ -22,7 +22,12 @@ void	interface_act_set_timeout(void);
 void	interface_act_set_disconnected(void);
 void	interface_act_set_connected(void);
 
+void	interface_act_reset_sig(void);
+void	interface_act_send_hello(void);
 int	interface_act_receive_query(void);
+void	interface_act_compose_query(char *prompt);
+void	interface_act_send_query(void);
+int	interface_act_retrieve_coords(void);
 // COM_INTERFACE_ACT2
 void	interface_act_parse_pid(char const *arg);
 void	interface_act_wait_for_epid(void);
