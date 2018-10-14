@@ -12,11 +12,11 @@ int	init_game(game_t *game, char **av)
 	interface_act_init_as(game);
 	if (game->me == P1) {
 		print_my_pid();
-		my_putstr_fd(1, "waiting for ennemy connection...\n");
+		my_putstr_fd(1, "waiting for enemy connection...\n");
 		interface_act_wait_for_epid();
 		usleep(WAIT_OFFSET);
 		interface_act_send_hello();
-		my_putstr_fd(1, "ennemy connected\n");
+		my_putstr_fd(1, "\nenemy connected\n");
 	} else if (game->me == P2) {
 		interface_act_parse_pid(av[1]);
 		interface_act_send_hello();
@@ -34,7 +34,7 @@ void	play_game(game_t *game)
 
 	board_init(ennemy);
 	while (interface_connected() && game->lives > 0) {
-		play_turn(game, prompt);
+		play_turn(game, ennemy, prompt);
 	}
 }
 

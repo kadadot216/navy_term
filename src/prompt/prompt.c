@@ -32,5 +32,6 @@ char	*prompt_attack(char *buffer)
 			my_putstr_fd(1, "wrong position\n");
 		}
 	}
+	buffer[2] = '\0';
 	return (buffer);
 }
