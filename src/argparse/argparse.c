@@ -9,12 +9,6 @@
 #include "my.h"
 #include "interface_act.h"
 
-int	get_p1pid(char const *arg)
-{
-	interface_act_set_pid((pid_t) (my_getnbr(arg)));
-	return (1);
-}
-
 int	check_for_help(int ac, char **av)
 {
 	int	i = 0;

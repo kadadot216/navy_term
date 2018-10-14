@@ -21,10 +21,16 @@ void	print_attack_msg(void)
 
 char	*prompt_attack(char *buffer)
 {
-	while (!(prompt_valid_attack(buffer))) {
+	int	is_prompt_valid = 0;
+
+	while (!is_prompt_valid) {
 		my_memset(buffer, '\0', 2);
 		print_attack_msg();
 		read(0, buffer, 2);
+		is_prompt_valid = prompt_valid_attack(buffer);
+		if (!is_prompt_valid) {
+			my_putstr_fd(1, "wrong position\n");
+		}
 	}
 	return (buffer);
 }

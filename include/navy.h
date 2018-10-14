@@ -92,6 +92,7 @@ int	game_parse_map(game_t *this, char const *filename);
 
 // SETUP AS
 game_t	game_setup_as(int ac);
+int	game_parse_map_as(game_t *game, char **av);
 
 
 // PRINTING

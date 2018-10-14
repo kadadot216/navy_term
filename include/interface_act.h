@@ -19,6 +19,13 @@ void	interface_act_init(void);
 void	interface_act_update_role(game_t *game);
 void	interface_act_init_as(game_t *game);
 
+// COM_INTERFACE_ACT2
+void	interface_act_parse_pid(char const *arg);
+void	interface_act_wait_for_p2pid(void);
+
+// COM_INTERFACE_SIG
+void	sig_get_p2pid(int sig, siginfo_t *info, void *context);
+
 // DEBUG PRINT
 void	db_interface_print_pid(void);
 void	db_interface_print_query(void);
