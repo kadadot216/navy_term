@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** coords_processing.c
-** File description:
-** Bit processing related functions
-*/
-
 #include "signals.h"
 
 int	get_idx_from_coords(char *prompt)

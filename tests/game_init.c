@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** game_init.c
-** File description:
-** Game init TUs
-*/
-
 #include "./include/unit_testing.h"
 #include "navy.h"
 

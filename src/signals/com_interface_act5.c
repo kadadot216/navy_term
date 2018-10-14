@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** com_interface.c
-** File description:
-** Communication interface functions
-*/
-
 #include "navy.h"
 #include "signals.h"
 #include "interface_act.h"
@@ -42,7 +35,7 @@ void	interface_act_send_query(void)
 
 void	interface_act_send_response(int hit)
 {
-	interface_send_bit(hit);
+	interface_send_bit((bit_t) hit);
 }
 
 void	interface_act_compose_attack(char *prompt)

@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** turn.c
-** File description:
-** Turn functions
-*/
-
 #include "main.h"
 
 #include <stdio.h>

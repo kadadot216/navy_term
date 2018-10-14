@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** main.h
-** File description:
-** Header file for Main prototypes
-*/
-
 #ifndef __MAIN_H__
 #define __MAIN_H__
 

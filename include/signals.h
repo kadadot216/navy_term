@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** signals.h
-** File description:
-** Header file for signals queries and functions
-*/
-
 #ifndef __SIGNALS_H__
 #define __SIGNALS_H__
 

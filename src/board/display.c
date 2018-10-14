@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** display.c
-** File description:
-** Display navy board
-*/
-
 #include "navy.h"
 #include "my.h"
 

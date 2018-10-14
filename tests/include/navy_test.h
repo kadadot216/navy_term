@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** navy_test.h
-** File description:
-** Header file for UT navy testing header file
-*/
-
 #ifndef __NAVY_TEST_H__
 #define __NAVY_TEST_H__
 

@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** coords_processing.c
-** File description:
-** Bit processing related functions
-*/
-
 #include "signals.h"
 
 sigquery_t	*sq_header_set_cut(sigquery_t *this)

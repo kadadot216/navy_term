@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** get_idx_from_coords.c
-** File description:
-** Encoding signals TUs
-*/
-
 #include "navy.h"
 #include "./include/signals_testing.h"
 #include "./include/unit_testing.h"

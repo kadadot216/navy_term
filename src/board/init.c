@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** init.c
-** File description:
-** Board initialization function
-*/
-
 #include "navy.h"
 
 cell_t	*board_init(board_t this)

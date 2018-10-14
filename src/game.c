@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** game.c
-** File description:
-** Game routine functions
-*/
-
 #include "main.h"
 
 int	init_game(game_t *game, char **av)
@@ -35,6 +28,11 @@ void	play_game(game_t *game)
 	board_init(ennemy);
 	while (interface_connected() && game->lives > 0) {
 		play_turn(game, ennemy, prompt);
+	}
+	if (game->lives > 0) {
+		my_putstr_fd(1, "I won\n");
+	} else {
+		my_putstr_fd(1, "Enemy won\n");
 	}
 }
 

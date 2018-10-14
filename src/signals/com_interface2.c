@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** com_interface2.c
-** File description:
-** Communication interface functions
-*/
-
 #include "navy.h"
 #include "signals.h"
 

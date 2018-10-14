@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** main.c
-** File description:
-** Main file for GDB debuging
-*/
-
 #include "main.h"
 
 int	main(int ac, char **av)

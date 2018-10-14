@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** retrieve_idx_from_bits.c
-** File description:
-** Retrieve idx from bits TUs
-*/
-
 #include "navy.h"
 #include "./include/signals_testing.h"
 #include "./include/unit_testing.h"

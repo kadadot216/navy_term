@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** navy.h
-** File description:
-** Header file for Navy game and board
-*/
-
 #ifndef __NAVY_H__
 #define __NAVY_H__
 

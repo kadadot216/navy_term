@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** query.c
-** File description:
-** Signal related functions
-*/
-
 #include "signals.h"
 
 sigquery_t	*sq_reset_header(sigquery_t *this)

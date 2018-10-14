@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** interface_act.h
-** File description:
-** Header file for Interface actions during runtime
-*/
-
 #ifndef __INTERFACE_ACT_H__
 #define __INTERFACE_ACT_H__
 

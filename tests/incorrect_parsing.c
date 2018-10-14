@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** incorrect_parsing.c
-** File description:
-** UT for incorrect parsing
-*/
-
 #include "./include/unit_testing.h"
 #include "./include/navy_test.h"
 

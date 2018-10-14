@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** setup2.c
-** File description:
-** Game setup functions
-*/
-
 #include "my.h"
 #include "navy.h"
 

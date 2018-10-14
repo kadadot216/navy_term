@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** prompt.c
-** File description:
-** Prompting related functions
-*/
-
 #include "my.h"
 #include "navy.h"
 #include <unistd.h>

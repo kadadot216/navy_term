@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** query_checks.c
-** File description:
-** Query checking functions
-*/
-
 #include "signals.h"
 
 int	sq_header_is_msg(sigquery_t *this)

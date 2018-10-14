@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** parse_file.c
-** File description:
-** Parse file function
-*/
-
 #include <unistd.h>
 #include "navy.h"
 

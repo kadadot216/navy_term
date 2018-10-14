@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** pid.c
-** File description:
-** PID related functions
-*/
-
 #include <stdio.h>
 #include "signals.h"
 #include "my.h"

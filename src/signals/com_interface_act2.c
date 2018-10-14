@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** com_interface_act2.c
-** File description:
-** Interface actions part.2
-*/
-
 #include "navy.h"
 #include "my.h"
 #include "interface_act.h"
@@ -45,8 +38,8 @@ void	interface_act_wait_for_epid(void)
 
 void	interface_send_bit(bit_t this)
 {
-	if (this)
+	if (this == 1)
 		kill(interface.epid, SIGUSR2);
-	else
+	else if (this == 0)
 		kill(interface.epid, SIGUSR1);
 }

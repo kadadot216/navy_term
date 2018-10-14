@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** com_interface.c
-** File description:
-** Communication interface functions
-*/
-
 #include "navy.h"
 #include "signals.h"
 #include "interface_act.h"
@@ -68,6 +61,7 @@ int	interface_act_receive_response(void)
 		interface_act_reset_query();
 		return (-1);
 	}
-	hit = (interface.signal == SIGUSR2) ? 1 : 0;
+	hit = bit_from_sig(interface.signal);
+	interface.signal = 0;
 	return (hit);
 }

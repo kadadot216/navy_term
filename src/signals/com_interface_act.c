@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** com_interface_act.c
-** File description:
-** Interface actions
-*/
-
 #include "navy.h"
 #include "signals.h"
 
