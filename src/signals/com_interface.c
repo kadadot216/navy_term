@@ -8,12 +8,6 @@
 #include "navy.h"
 #include "signals.h"
 
-//void	interface_send_query(interface_t *this)
-//{
-//	if (this->epid > 0)  // && is_set_header
-//
-//}
-
 interface_t	*interface_set_pid(interface_t *this, pid_t pid)
 {
 	this->epid = pid;
@@ -40,7 +34,7 @@ interface_t	*interface_init_sig(interface_t *this)
 	this->sig.sa_sigaction = 0;
 	sigaction(SIGUSR1, &this->sig, 0);
 	sigaction(SIGUSR2, &this->sig, 0);
-	sq_reset(&this->uquery);
+	this = interface_reset_query(this);
 	return (this);
 }
 

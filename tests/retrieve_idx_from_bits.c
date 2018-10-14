@@ -14,9 +14,9 @@ Test(ret_idx_f_bits, ret_idx_f_bits1)
 	int	res = 0;
 
 	sigquery_t	query = sq_new();
-	sq_compose_msg_query(&query, "A1");
+	sq_compose_msg_query(&query, "B1");
 	res = message_retrieve_value(&query);
-	cr_assert_eq(res, 0);
+	cr_assert_eq(res, 1);
 }
 
 Test(ret_res_f_bits, ret_res_f_bits2)

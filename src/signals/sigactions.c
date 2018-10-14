@@ -19,12 +19,12 @@ void	sig_get_epid(int sig, siginfo_t *info, void *context)
 	interface_act_set_connected();
 }
 
-#include <stdio.h>
-
 void	sig_get_query(int sig, siginfo_t *info, void *context)
 {
 	(void)context;
-	printf("Updating %d %d", sig, interface.bc);
-	interface.signal = sig;
-	interface.bc++;
+	(void)info;
+	if ((sig == SIGUSR1 || sig == SIGUSR2) && interface.role == I_WAIT) {
+		interface.signal = sig;
+		interface.bc++;
+	}
 }

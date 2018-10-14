@@ -26,6 +26,7 @@ int	init_game(game_t *game, char **av)
 		interface_act_parse_pid(av[1]);
 		interface_act_send_hello();
 		interface_act_wait_for_epid();
+		print_my_pid();
 	}
 	return (init_check_connected());
 }
@@ -36,34 +37,40 @@ void	turn_attack(game_t *game, char *prompt)
 	printf("Prompted %s\n", prompt);
 	interface_act_compose_query(prompt);
 	interface_act_send_query();
-	my_memset(prompt, '\0', 2);
+	my_memset(prompt, '\0', 3);
 }
 
-void	turn_wait(game_t *game, char *prompt)
+void	turn_wait(game_t *game)
 {
 	int	status = 0;
 	int	index = -1;
+	char	coords[3] = {'\0'};
 
-	print_my_pid();
 	printf("waiting for ennemy's attack...\n");
 	status = interface_act_receive_query();
 	if (status == 1) {
 		index = interface_act_retrieve_coords();
 		printf("Index is %d\n", index);
-		prompt = get_coords_from_idx(prompt, index);
-		printf("Retrieved coordinates are %s\n", prompt);
+		get_coords_from_idx(coords, index);
+		printf("Retrieved coordinates are %s\n", coords);
 	}
-	my_memset(prompt, '\0', 2);
 }
 
 void	play_turn(game_t *game, char *prompt)
 {
+	char	*message[] = {
+		"PLAY",
+		"WAIT"
+	};
 	if (game->role == ROLE_PLAY) {
 		turn_attack(game, prompt);
-	} else if (game->role == ROLE_WAIT) {
-		turn_wait(game, prompt);
+	} 
+	if (game->role == ROLE_WAIT) {
+		turn_wait(game);
 	}
 	game = game_update_role(game);
+	interface_act_update_role(game);
+	printf("Role is now %s\n", message[game->role]);
 }
 
 void	play_game(game_t *game)

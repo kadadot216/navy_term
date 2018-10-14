@@ -48,7 +48,7 @@ typedef struct	s_interface {
 extern interface_t	com_interface;
 
 #define	TIME_OUT	(120000000)
-#define	WAIT_OFFSET	(30)
+#define	WAIT_OFFSET	(100)
 //#define	TIME_OUT	(1200000)
 
 // INFO

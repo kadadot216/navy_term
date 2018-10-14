@@ -41,7 +41,6 @@ void	interface_act_wait_for_epid(void)
 	timeout = !(usleep(TIME_OUT));
 	if (timeout)
 		interface_act_set_timeout();
-	interface_act_reset_sig();
 }
 
 void	interface_send_bit(bit_t this)
@@ -56,8 +55,6 @@ bit_t	bit_from_sig(int signal)
 {
 	if (signal == SIGUSR2)
 		return (1);
-	else if (signal == SIGUSR1)
-		return (0);
 	return (0);
 }
 
@@ -79,20 +76,20 @@ int	interface_act_receive_query(void)
 	int	timeout = 0;
 	int	sigfield[8] = {0};
 
+	interface_act_reset_query();
 	interface.sig.sa_sigaction = &sig_get_query;
 	sigaction(SIGUSR1, &interface.sig, NULL);
 	sigaction(SIGUSR2, &interface.sig, NULL);
-	while (interface.bc != 8) {
+	while (interface.bc < 8) {
 		timeout = !(usleep(TIME_OUT));
 		if (timeout) {
 			interface_act_set_timeout();
 			interface_act_reset_query();
 			return (-1);
 		}
-		sigfield[interface.bc] = interface.signal;
+		sigfield[interface.bc - 1] = interface.signal;
 	}
 	interface_map_query(&interface, sigfield);
-	interface_act_reset_sig();
 	return (1);
 }
 
@@ -104,6 +101,8 @@ int	interface_act_retrieve_coords(void)
 	interface_act_reset_query();
 	return (index);
 }
+
+void	sq_display_full(sigquery_t *this);
 
 void	interface_act_send_query(void)
 {
@@ -128,5 +127,5 @@ void	interface_act_send_query(void)
 
 void	interface_act_compose_query(char *prompt)
 {
-	sq_compose_msg_query(&interface.uquery, prompt);
+	interface_set_query(&interface, prompt);
 }
