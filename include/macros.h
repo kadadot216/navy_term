@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** macros.h
-** File description:
-** Header file for Macros
-*/
-
 #ifndef __MACROS_H__
 #define __MACROS_H__
 

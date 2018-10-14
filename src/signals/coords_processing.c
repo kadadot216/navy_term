@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** coords_processing.c
-** File description:
-** Bit processing related functions
-*/
-
 #include "signals.h"
 
 int	get_idx_from_coords(char *prompt)
@@ -37,6 +30,34 @@ sigquery_t	*set_message_bit(sigquery_t *this, int value)
 	value /= BASE_2;
 	this->c6 = (value % BASE_2);
 	value /= BASE_2;
+	return (this);
+}
+
+sigquery_t	*sq_header_set_msg(sigquery_t *this)
+{
+	this->h1 = 0;
+	this->h2 = 1;
+	return (this);
+}
+
+sigquery_t	*sq_header_set_response(sigquery_t *this, int hit)
+{
+	this->h1 = 1;
+	this->h2 = hit;
+	return (this);
+}
+
+sigquery_t	*sq_header_set_cut(sigquery_t *this)
+{
+	this->h1 = 0;
+	this->h2 = 0;
+	return (this);
+}
+
+sigquery_t	*sq_cut_connection(sigquery_t *this)
+{
+	this = sq_header_set_cut(this);
+	this = set_message_bit(this, 63);
 	return (this);
 }
 

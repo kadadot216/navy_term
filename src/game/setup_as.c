@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** setup_as.c
-** File description:
-** Game setup according to input parameters
-*/
-
 #include "navy.h"
 
 game_t	game_setup_as(int ac)

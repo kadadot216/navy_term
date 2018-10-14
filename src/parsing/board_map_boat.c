@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** parse_coords.c
-** File description:
-** Parsing coordinates functions
-*/
-
 #include <stdlib.h>
 #include "navy.h"
 #include "macros.h"

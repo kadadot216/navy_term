@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** argchecks.c
-** File description:
-** Navy arg checking TUs
-*/
-
 #include "./include/unit_testing.h"
 #include "navy.h"
 

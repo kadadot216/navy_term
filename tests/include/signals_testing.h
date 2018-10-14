@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** signals_testing.h
-** File description:
-** Header file for Functions prototypes for signal testing
-*/
-
 #ifndef __SIGNALS_TESTING_H__
 #define __SIGNALS_TESTING_H__
 

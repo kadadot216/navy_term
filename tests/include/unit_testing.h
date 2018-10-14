@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** unit_testing.h
-** File description:
-** Header file for Unit testing file
-*/
-
 #ifndef __UNIT_TESTING_H__
 #define __UNIT_TESTING_H__
 

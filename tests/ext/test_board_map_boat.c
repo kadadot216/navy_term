@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** test_board_map_boat.c
-** File description:
-** UT wrapper function for board_map_boat
-*/
-
 #include "my.h"
 #include "navy.h"
 

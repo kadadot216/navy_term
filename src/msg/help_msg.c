@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** help_msg.c
-** File description:
-** Help message functions
-*/
-
 #include "my.h"
 
 void	print_help_msg(char const *pname)

@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** board_mapping.c
-** File description:
-** Board mapping UT file
-*/
-
 #include "./include/unit_testing.h"
 #include "./include/navy_test.h"
 #include "my.h"

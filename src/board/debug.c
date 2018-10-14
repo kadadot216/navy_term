@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** debug.c
-** File description:
-** Board debugging functions
-*/
-
 #include "navy.h"
 #include "my.h"
 

@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** my_getnbr.c
-** File description:
-** Returns a string as a number
-*/
-
 #include "my.h"
 
 static	int	nbr_overflow(char sign, char const *str, int sum)

@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** file_parsing.c
-** File description:
-** File parsing tests
-*/
-
 #include "navy.h"
 #include "./include/unit_testing.h"
 
