@@ -55,6 +55,7 @@ SRC		=	src/game.c				\
 			src/signals/pid.c			\
 			src/signals/bit_processing.c		\
 			src/signals/coords_processing.c		\
+			src/signals/coords_processing2.c	\
 			src/signals/com_interface.c		\
 			src/signals/com_interface2.c		\
 			src/signals/com_interface_act.c		\

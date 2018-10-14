@@ -14,7 +14,6 @@ int	bit_retrieve_value(bit_t b, int n)
 	else if (b == 0)
 		return (0);
 	return (0);
-	
 }
 
 bit_t	bit_from_sig(int signal)

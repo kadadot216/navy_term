@@ -24,7 +24,8 @@ static int	cells_valid_ref_distance(int cell_distance, char boat_ref)
 	return (cell_distance == (boat_ref - '0'));
 }
 
-static int	cell_path_crossed(board_t this, char *cell_ref, int align, int dist)
+static int	cell_path_crossed(board_t this, char *cell_ref,
+		int align, int dist)
 {
 	cell_t	*elem_test = NULL;
 	char	cell_copy[2] = {cell_ref[0], cell_ref[1]};

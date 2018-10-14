@@ -37,25 +37,37 @@ typedef enum	e_irole {
 }	irole_t;
 
 typedef struct	s_interface {
-	bit_t		connected:1;
-	bit_t		timeout:1;
-	irole_t		role;
+	bit_t	connected:1;
+	bit_t	timeout:1;
+	irole_t	role;
 	sigquery_t	uquery;
 	unsigned int	bc;
 	unsigned int	signal;
-	pid_t		epid;
+	pid_t	epid;
 	sigaction_t	sig;
 }	interface_t;
 
 extern interface_t	com_interface;
 
+void	print_my_pid(void);
+void	sq_display_bitfield(sigquery_t *this);
+void	sq_display_header(sigquery_t *this);
 bit_t	bit_from_sig(int signal);
 char	*get_coords_from_idx(char *buffer, int idx);
 char	*prompt_attack(char *buffer);
 int	bit_retrieve_value(bit_t b, int n);
+int	get_idx_from_coords(char *prompt);
 int	message_retrieve_value(sigquery_t *this);
 int	sq_header_check_hit(sigquery_t *this);
 int	sq_header_is_msg(sigquery_t *this);
+sigquery_t	*set_message_bit(sigquery_t *this, int value);
+sigquery_t	*sq_compose_msg_query(sigquery_t *this, char *prompt);
+sigquery_t	*sq_cut_connection(sigquery_t *this);
+sigquery_t	*sq_header_set_cut(sigquery_t *this);
+sigquery_t	*sq_header_set_msg(sigquery_t *this);
+sigquery_t	*sq_header_set_response(sigquery_t *this, int hit);
+sigquery_t	*sq_reset(sigquery_t *this);
+sigquery_t	sq_new(void);
 interface_t	*interface_init(interface_t *this);
 interface_t	*interface_init_sig(interface_t *this);
 interface_t	*interface_map_query(interface_t *this, int *sigfield);
@@ -66,15 +78,5 @@ interface_t	*interface_set_pid(interface_t *this, pid_t pid);
 interface_t	*interface_set_query(interface_t *this, char *prompt);
 interface_t	*interface_set_role(interface_t *this, int role);
 interface_t	*interface_set_timeout(interface_t *this);
-sigquery_t	*sq_compose_msg_query(sigquery_t *this, char *prompt);
-sigquery_t	*sq_cut_connection(sigquery_t *this);
-sigquery_t	*sq_header_set_cut(sigquery_t *this);
-sigquery_t	*sq_header_set_msg(sigquery_t *this);
-sigquery_t	*sq_header_set_response(sigquery_t *this, int hit);
-sigquery_t	*sq_reset(sigquery_t *this);
-sigquery_t	sq_new(void);
-void	print_my_pid(void);
-void	sq_display_bitfield(sigquery_t *this);
-void	sq_display_header(sigquery_t *this);
 
 #endif /* __SIGNALS_H__ */

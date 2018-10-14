@@ -60,7 +60,7 @@ void	play_turn(game_t *game, char *prompt)
 {
 	if (game->role == ROLE_PLAY) {
 		turn_attack(prompt);
-	} 
+	}
 	if (game->role == ROLE_WAIT) {
 		turn_wait(game);
 	}

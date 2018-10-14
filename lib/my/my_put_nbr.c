@@ -5,7 +5,7 @@
 ** Displays the number given as a parameter.
 */
 
-#include <unistd.h> 
+#include <unistd.h>
 
 static	void	nbr_putchar(char const c)
 {
