@@ -39,7 +39,7 @@ typedef struct	s_interface {
 	bit_t		timeout:1;
 	irole_t		role;
 	sigquery_t	uquery;
-	int		wc;
+	unsigned int	bc;
 	pid_t		epid;
 	sigaction_t	sig;
 }	interface_t;
@@ -47,6 +47,7 @@ typedef struct	s_interface {
 extern interface_t	com_interface;
 
 #define	TIME_OUT	(120000000)
+#define	WAIT_OFFSET	(30)
 //#define	TIME_OUT	(1200000)
 
 // INFO

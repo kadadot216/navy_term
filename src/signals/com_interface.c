@@ -29,7 +29,7 @@ interface_t	*interface_set_query(interface_t *this, char *prompt)
 interface_t	*interface_reset_query(interface_t *this)
 {
 	sq_reset(&this->uquery);
-	this->wc = 0;
+	this->bc = 0;
 	return (this);
 }
 

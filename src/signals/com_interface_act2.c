@@ -17,19 +17,16 @@ void	interface_act_parse_pid(char const *arg)
 	interface_act_set_pid((pid_t) (my_getnbr(arg)));
 }
 
-void	interface_act_wait_for_p2pid(void)
+void	interface_act_wait_for_epid(void)
 {
-	int	wait_stat = 0;
+	int	timeout = 0;
 
-	interface.sig.sa_sigaction = &sig_get_p2pid;
+	interface.sig.sa_sigaction = &sig_get_epid;
 	sigaction(SIGUSR1, &interface.sig, NULL);
 	sigaction(SIGUSR2, &interface.sig, NULL);
-	wait_stat = usleep(TIME_OUT);
-	if (wait_stat == 0)
+	timeout = !(usleep(TIME_OUT));
+	if (timeout)
 		interface_act_set_timeout();
-	else {
-		interface_act_set_connected();
-	}
 }
 
 void	interface_act_send_hello(void)
@@ -37,17 +34,10 @@ void	interface_act_send_hello(void)
 	kill(interface.epid, SIGUSR1);
 }
 
-int	init_checks_p1(void)
+int	init_check_connected(void)
 {
-	if (connection_timed_out() || interface.epid == 0)
-		return (0);
-	else
-		return (1);
-}
-
-int	init_checks_p2(void)
-{
-	if (interface.epid == 0)
+	if (connection_timed_out() || interface.epid == 0 ||
+		!interface_connected())
 		return (0);
 	else
 		return (1);

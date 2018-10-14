@@ -21,13 +21,13 @@ void	interface_act_init_as(game_t *game);
 void	interface_act_set_timeout(void);
 void	interface_act_set_disconnected(void);
 void	interface_act_set_connected(void);
-int	connection_timed_out(void);
 
 // COM_INTERFACE_ACT2
 void	interface_act_parse_pid(char const *arg);
-void	interface_act_wait_for_p2pid(void);
-int	init_checks_p2(void);
-int	init_checks_p1(void);
+void	interface_act_wait_for_epid(void);
+int	init_check_connected(void);
+int	connection_timed_out(void);
+int	interface_connected(void);
 
 // DEBUG PRINT
 void	db_interface_print_pid(void);

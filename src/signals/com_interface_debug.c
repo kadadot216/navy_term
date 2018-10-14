@@ -38,11 +38,12 @@ void	db_interface_print_role(void)
 void	db_interface_print_connected(void)
 {
 	char	*messages[] = {
-		"connected",
-		"disconnected"
+		"disconnected",
+		"connected"
 	};
 
-	printf("Interface %s\n", messages[interface.connected]);
+	printf("Interface %d %s\n", interface.connected, 
+		messages[interface.connected]);
 }
 
 void	db_interface_printall(void)

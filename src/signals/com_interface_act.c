@@ -60,6 +60,11 @@ int	connection_timed_out(void)
 	}
 }
 
+int	interface_connected(void)
+{
+	return (interface.connected);
+}
+
 void	interface_act_init_as(game_t *game)
 {
 	interface_act_init();
