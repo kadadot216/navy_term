@@ -38,6 +38,7 @@ game_t	*update_board(int index, game_t *game)
 		hit = 0;
 	}
 	interface_act_send_response(hit);
+	interface_act_send_query();
 	return (game);
 }
 

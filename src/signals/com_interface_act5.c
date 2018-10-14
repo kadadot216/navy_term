@@ -42,7 +42,7 @@ void	interface_act_send_query(void)
 
 void	interface_act_send_response(int hit)
 {
-	sq_header_set_response(&interface.uquery, hit);
+	interface_send_bit(hit);
 }
 
 void	interface_act_compose_attack(char *prompt)

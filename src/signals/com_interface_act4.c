@@ -50,20 +50,24 @@ int	interface_act_receive_coords(void)
 	int status = -1;
 
 	status = interface_act_receive_query();
-	if (!sq_header_is_msg(&interface.uquery))
-		return (-1);
 	return (status);
 }
 
 int	interface_act_receive_response(void)
 {
-	int	status = -1;
+	int	timeout = 0;
 	int	hit = -1;
 
-	status = interface_act_receive_query();
-	hit = sq_header_check_hit(&interface.uquery);
 	interface_act_reset_query();
-	if (!status)
+	interface.sig.sa_sigaction = &sig_get_response;
+	sigaction(SIGUSR1, &interface.sig, NULL);
+	sigaction(SIGUSR2, &interface.sig, NULL);
+	timeout = !(usleep(TIME_OUT));
+	if (timeout) {
+		interface_act_set_timeout();
+		interface_act_reset_query();
 		return (-1);
+	}
+	hit = (interface.signal == SIGUSR2) ? 1 : 0;
 	return (hit);
 }

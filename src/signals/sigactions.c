@@ -28,3 +28,12 @@ void	sig_get_query(int sig, siginfo_t *info, void *context)
 		interface.bc++;
 	}
 }
+
+void	sig_get_response(int sig, siginfo_t *info, void *context)
+{
+	(void)context;
+	(void)info;
+	if ((sig == SIGUSR1 || sig ==SIGUSR2) && interface.role == I_PLAY) {
+		interface.signal = sig;
+	}
+}
