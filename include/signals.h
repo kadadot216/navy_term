@@ -40,6 +40,7 @@ typedef struct	s_interface {
 	irole_t		role;
 	sigquery_t	uquery;
 	unsigned int	bc;
+	unsigned int	signal;
 	pid_t		epid;
 	sigaction_t	sig;
 }	interface_t;

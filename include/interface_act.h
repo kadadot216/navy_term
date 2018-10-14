@@ -22,6 +22,7 @@ void	interface_act_set_timeout(void);
 void	interface_act_set_disconnected(void);
 void	interface_act_set_connected(void);
 
+int	interface_act_receive_query(void);
 // COM_INTERFACE_ACT2
 void	interface_act_parse_pid(char const *arg);
 void	interface_act_wait_for_epid(void);

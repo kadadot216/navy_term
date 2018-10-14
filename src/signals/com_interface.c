@@ -30,6 +30,7 @@ interface_t	*interface_reset_query(interface_t *this)
 {
 	sq_reset(&this->uquery);
 	this->bc = 0;
+	this->signal = 0;
 	return (this);
 }
 
@@ -39,6 +40,7 @@ interface_t	*interface_init_sig(interface_t *this)
 	this->sig.sa_sigaction = 0;
 	sigaction(SIGUSR1, &this->sig, 0);
 	sigaction(SIGUSR2, &this->sig, 0);
+	sq_reset(&this->uquery);
 	return (this);
 }
 
@@ -47,7 +49,6 @@ interface_t	*interface_init(interface_t *this)
 	this->connected = 0;
 	this->epid = (pid_t) 0;
 	this = interface_init_sig(this);
-	sq_reset(&this->uquery);
 	return (this);
 }
 
