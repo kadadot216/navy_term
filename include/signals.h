@@ -23,6 +23,7 @@ typedef	struct s_sigquery {
 
 #define	BASE_2	(2)
 
+#include <unistd.h>
 #include <sys/types.h>
 #include <signal.h>
 
@@ -35,13 +36,21 @@ typedef enum	e_irole {
 
 typedef struct	s_interface {
 	bit_t		connected:1;
+	bit_t		timeout:1;
 	irole_t		role;
 	sigquery_t	uquery;
+	int		wc;
 	pid_t		epid;
 	sigaction_t	sig;
 }	interface_t;
 
 extern interface_t	com_interface;
+
+#define	TIME_OUT	(120000000)
+//#define	TIME_OUT	(1200000)
+
+// INFO
+void	print_my_pid(void);
 
 // COM_INTERFACE
 interface_t	*interface_init(interface_t *this);
@@ -49,6 +58,9 @@ interface_t	*interface_reset_query(interface_t *this);
 interface_t	*interface_set_query(interface_t *this, char *prompt);
 interface_t	*interface_set_pid(interface_t *this, pid_t pid);
 interface_t	*interface_set_role(interface_t *this, int role);
+interface_t	*interface_set_timeout(interface_t *this);
+interface_t	*interface_set_connected(interface_t *this);
+interface_t	*interface_set_disconnected(interface_t *this);
 
 // PROMPT
 char	*prompt_attack(char *buffer);

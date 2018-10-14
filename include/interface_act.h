@@ -18,13 +18,16 @@ void	interface_act_set_query(char *prompt);
 void	interface_act_init(void);
 void	interface_act_update_role(game_t *game);
 void	interface_act_init_as(game_t *game);
+void	interface_act_set_timeout(void);
+void	interface_act_set_disconnected(void);
+void	interface_act_set_connected(void);
+int	connection_timed_out(void);
 
 // COM_INTERFACE_ACT2
 void	interface_act_parse_pid(char const *arg);
 void	interface_act_wait_for_p2pid(void);
-
-// COM_INTERFACE_SIG
-void	sig_get_p2pid(int sig, siginfo_t *info, void *context);
+int	init_checks_p2(void);
+int	init_checks_p1(void);
 
 // DEBUG PRINT
 void	db_interface_print_pid(void);

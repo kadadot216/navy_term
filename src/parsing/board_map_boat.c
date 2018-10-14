@@ -12,11 +12,11 @@
 static int	check_cells_alignment(char *f_cell, char *l_cell)
 {
 	if (f_cell[0] != l_cell[0] && f_cell[1] == l_cell[1])
-		return (0);	// Horizontal
+		return (0);
 	else if (f_cell[0] == l_cell[0] && f_cell[1] != l_cell[1])
-		return (1);	// Vertical
+		return (1);
 	else
-		return (-1);	// Invalid
+		return (-1);
 }
 
 static int	cells_valid_ref_distance(int cell_distance, char boat_ref)

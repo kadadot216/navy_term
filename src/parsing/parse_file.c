@@ -8,8 +8,6 @@
 #include <unistd.h>
 #include "navy.h"
 
-#include <stdio.h>
-
 int	game_map_boat(game_t *this, char *line)
 {
 	char	*boat_ref = &line[B_REF];

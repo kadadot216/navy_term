@@ -49,12 +49,13 @@ SRC		=	src/board/init.c			\
 			src/msg/help_msg.c			\
 			src/argparse/argparse.c			\
 			src/signals/query.c			\
+			src/signals/pid.c			\
 			src/signals/bit_processing.c		\
 			src/signals/coords_processing.c		\
 			src/signals/com_interface.c		\
 			src/signals/com_interface_act.c		\
 			src/signals/com_interface_act2.c	\
-			src/signals/com_interface_sig.c		\
+			src/signals/sigactions.c		\
 			src/signals/com_interface_debug.c	\
 			src/signals/debug.c			\
 			src/game/setup.c			\
